@@ -9,7 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $guarded = [];
+    protected $table = 'category';
 
     public function ads()
     {

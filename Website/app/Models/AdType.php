@@ -9,7 +9,8 @@ class AdType extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $guarded = [];
+    protected $table = 'ad_type';
 
     public function ads()
     {

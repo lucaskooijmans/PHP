@@ -17,9 +17,9 @@ return new class extends Migration
             $table->text('description');
             $table->double('price');
             $table->string('postalcode');
-            $table->dateTime('rent_start');
-            $table->dateTime('rent_stop');
-            $table->string('QR_code');
+            $table->dateTime('rent_start')->nullable();
+            $table->dateTime('rent_stop')->nullable();
+            $table->string('QR_code')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
