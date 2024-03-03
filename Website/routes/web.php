@@ -27,9 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/create', [AdController::class, 'create']);
+    Route::post('create', [AdController::class, 'store']);
+    Route::get('/ads', [AdController::class, 'index']);
 });
 
 require __DIR__.'/auth.php';
-
-Route::get('/create', [AdController::class, 'create'])->middleware('auth');
-Route::post('create', [AdController::class, 'store'])->middleware('auth');

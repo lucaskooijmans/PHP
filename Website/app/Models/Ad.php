@@ -33,7 +33,7 @@ class Ad extends Model
     }
     public function adType()
     {
-        return $this->belongsTo(AdType::class);
+        return $this->belongsTo(AdType::class, 'type_id');
     }
     public function addbids()
     {
