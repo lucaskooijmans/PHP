@@ -42,9 +42,13 @@
         <div class="mt-4">
             <x-input-label for="type" :value="__('Type')" />
 
-            <x-dropdown-input id="type" class="block mt-1 w-full"
-                          type="type"
-                          name="type"/>
+            @foreach ($roles as $role)
+                <label>
+                    <input id="type" type="radio" name="role" value="{{ $role->id }}">
+                    {{ $role->name }}
+                </label>
+                <br/>
+            @endforeach
 
             <x-input-error :messages="$errors->get('type')" class="mt-2" />
         </div>
