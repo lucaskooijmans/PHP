@@ -21,7 +21,14 @@ return new class extends Migration
             $table->dateTime('rent_stop');
             $table->string('QR_code');
             $table->unsignedBigInteger('parent_id')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('type_id');
             $table->foreign('parent_id')->references('id')->on('ad')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('category');
+            $table->foreign('type_id')->references('id')->on('ad_type');
+
             $table->timestamps();
         });
     }
