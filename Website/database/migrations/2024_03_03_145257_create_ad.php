@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('ad', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->double('price');
+            $table->string('postalcode');
+            $table->dateTime('rent_start');
+            $table->dateTime('rent_stop');
+            $table->string('QR_code');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->foreign('parent_id')->references('id')->on('ad')->onDelete('cascade');
             $table->timestamps();
         });
     }

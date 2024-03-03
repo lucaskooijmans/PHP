@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('ad_bids', function (Blueprint $table) {
             $table->id();
+            $table->double('bid');
             $table->timestamps();
         });
     }
