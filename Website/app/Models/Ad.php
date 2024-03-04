@@ -43,4 +43,8 @@ class Ad extends Model
     {
         return $this->hasMany(AdRating::class);
     }
+    public function business()
+    {
+        return $this->belongsTo(Business::class);
+    }
 }

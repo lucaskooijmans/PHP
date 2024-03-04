@@ -1,7 +1,7 @@
 <x-header/>
 
 <body>
-    <form method="POST" action="create">
+    <form method="POST" action="{{route('ad.store')}}">
         @csrf
 
         <label for="title">Title</label>

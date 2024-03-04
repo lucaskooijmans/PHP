@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Business;
 use App\Models\User;
 use App\Models\Role;
 use App\Providers\RouteServiceProvider;
@@ -48,12 +49,15 @@ class RegisteredUserController extends Controller
         $role = DB::table('roles')->where('id', '=', $request->role)->get();
 
 
-        $user->roles()->attach($role->first()->id);
+        $user->role()->attach($role->first()->id);
 
         event(new Registered($user));
 
         Auth::login($user);
+        if($role->id === 3)
+        {
 
+        }
         return redirect(RouteServiceProvider::HOME);
     }
 }
