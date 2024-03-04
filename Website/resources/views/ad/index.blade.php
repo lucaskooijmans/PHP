@@ -12,6 +12,8 @@
                     <li><h3>Type: </h3>{{ $ad->adType->name }}</li>
                 </ul>
             </li>
+
+            <a href="{{ route('ad.edit', $ad->id) }}" class="btn btn-primary">Edit</a>
         @endforeach
     </ul>
 </body>

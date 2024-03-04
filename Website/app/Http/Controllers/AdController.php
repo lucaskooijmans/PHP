@@ -63,7 +63,8 @@ class AdController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ad = Ad::findOrFail($id);
+        return view('ad.edit', compact('ad'));
     }
 
     /**
@@ -71,7 +72,10 @@ class AdController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $ad = Ad::findOrFail($id);
+        $ad->update($request->all());
+
+        return redirect()->route('ad.index')->with('success', 'Ad has been updated succesfully.');
     }
 
     /**

@@ -29,7 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/create', [AdController::class, 'create']);
     Route::post('create', [AdController::class, 'store']);
-    Route::get('/ads', [AdController::class, 'index']);
+    Route::get('/ads', [AdController::class, 'index'])->name('ad.index');
+    Route::get('/ads/edit/{id}', [AdController::class, 'edit'])->name('ad.edit');
+    Route::post('/ads/update/{id}', [AdController::class, 'update'])->name('ad.update');
 });
 
 require __DIR__.'/auth.php';
