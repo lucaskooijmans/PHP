@@ -20,16 +20,11 @@ return new class extends Migration
             $table->dateTime('rent_start')->nullable();
             $table->dateTime('rent_stop')->nullable();
             $table->string('QR_code')->nullable();
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('type_id');
-            $table->unsignedBigInteger('business_id')->nullable();
-            $table->foreign('parent_id')->references('id')->on('ad')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('category_id')->references('id')->on('category');
-            $table->foreign('type_id')->references('id')->on('ad_type');
-            $table->foreign('business_id')->references('id')->on('business');
+            $table->foreignId('parent_id')->nullable();
+            $table->foreignId('user_id');
+            $table->foreignId('category_id');
+            $table->foreignId('type_id');
+            $table->foreignId('business_id')->nullable();
             $table->timestamps();
         });
     }

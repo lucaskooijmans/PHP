@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->text('description');
             $table->string('image_path')->nullable();
-            $table->unsignedBigInteger('featured_ad')->nullable();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('featured_ad')->nullable();
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

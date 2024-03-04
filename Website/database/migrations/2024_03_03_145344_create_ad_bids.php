@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('ad_bids', function (Blueprint $table) {
             $table->id();
             $table->double('bid');
-            $table->unsignedBigInteger('ad_id');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('ad_id')->references('id')->on('ad');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('ad_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
