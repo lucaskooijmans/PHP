@@ -44,19 +44,15 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role_id' => $request->role_id
         ]);
-
-        $role = DB::table('roles')->where('id', '=', $request->role)->get();
-
-
-        $user->role()->attach($role->first()->id);
 
         event(new Registered($user));
 
         Auth::login($user);
-        if($role->id === 3)
+        if($request->role_id == 3)
         {
-
+            return redirect('business/create');
         }
         return redirect(RouteServiceProvider::HOME);
     }
