@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/create', [AdController::class, 'create']);
+    Route::post('create', [AdController::class, 'store']);
+    Route::get('/ads', [AdController::class, 'index'])->name('ad.index');
+    Route::get('/ads/edit/{id}', [AdController::class, 'edit'])->name('ad.edit');
+    Route::post('/ads/update/{id}', [AdController::class, 'update'])->name('ad.update');
 });
 
 require __DIR__.'/auth.php';

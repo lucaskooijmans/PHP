@@ -63,4 +63,17 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public function ads()
+    {
+        return $this->hasMany(Ad::class);
+    }
+    public function adBids()
+    {
+        return $this->hasMany(AdBid::class);
+    }
+    public function adRatings()
+    {
+        return $this->hasMany(AdRating::class);
+    }
 }
