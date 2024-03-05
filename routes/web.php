@@ -32,4 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('business', BusinessController::class);
 });
 
+Route::post('/ad/{id}/favorite', 'AdController@favorite')->name('ad.favorite');
+Route::post('/ad/{id}/unfavorite', 'AdController@unfavorite')->name('ad.unfavorite');
+
 require __DIR__.'/auth.php';
