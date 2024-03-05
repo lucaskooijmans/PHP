@@ -19,8 +19,7 @@ class AdController extends Controller
     public function index()
     {
         $ads = Ad::all();
-        $user = User::findorFail(Auth::id());
-        return view('ad.index', compact('ads'), compact('user'));
+        return view('ad.index', compact('ads'));
     }
 
     /**
@@ -49,6 +48,7 @@ class AdController extends Controller
             'category_id' => Category::findOrFail($request->category)->id,
             'type_id' => AdType::findOrFail($request->type)->id,
         ]);
+        return view('ad.show', compact('ad'));
 
     }
 
