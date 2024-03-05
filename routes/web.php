@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdController;
 
@@ -17,7 +18,7 @@ use App\Http\Controllers\AdController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('ad.index');
 });
 
 Route::get('/dashboard', function () {

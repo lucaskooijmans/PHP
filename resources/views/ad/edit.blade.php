@@ -22,8 +22,9 @@
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
-@endif
+@else
     <h1>This is not your post!</h1>
     <a href="{{route('ad.index')}}"class="btn btn-primary">Go Back</a>
+@endif
 </body>
 </html>
