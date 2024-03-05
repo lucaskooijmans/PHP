@@ -3,6 +3,18 @@
     <ul>
         @foreach($ads as $ad)
             <li>
+                @if(auth()->check() && auth()->user()->favorites->contains($ad->id))
+                    <form action="{{ route('ad.unfavorite', $ad->id) }}" method="post">
+                        @csrf
+                        <button type="submit">Verwijder favoriet</button>
+                    </form>
+                @else
+                    <form action="{{ route('ad.favorite', $ad->id) }}" method="post">
+                        @csrf
+                        <button type="submit">Favoriet</button>
+                    </form>
+                @endif
+
                 <ul>
                     <li><h3>Title: </h3>{{$ad->title}}</li>
                     <li><h3>Description: </h3>{{$ad->description}}</li>
