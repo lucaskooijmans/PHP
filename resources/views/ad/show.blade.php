@@ -1,0 +1,9 @@
+<x-header/>
+<body>
+    <h1>{{$ad->title}}</h1>
+    <ul>
+        <li>{{$ad->description}}</li>
+        <li>{{$ad->price}}</li>
+    </ul>
+</body>
+</html>

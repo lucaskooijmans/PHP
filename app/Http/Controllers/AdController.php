@@ -57,7 +57,8 @@ class AdController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $ad = Ad::findOrFail($id);
+        return view('ad.show', compact('ad'));
     }
 
     /**
