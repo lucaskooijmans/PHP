@@ -12,5 +12,6 @@
         @endif
     </div>
     <p>{{$business->description}}</p>
+    <a href="{{ route('business.edit', $business->id) }}" class="btn btn-primary">Edit</a>
 </body>
 </html>
