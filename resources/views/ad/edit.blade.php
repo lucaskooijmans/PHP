@@ -1,5 +1,6 @@
 <x-header/>
 <body>
+@if($ad->user->id == $user->id)
     <form action="{{route('ad.update', $ad->id)}}" method="POST">
         @csrf
         @method('PUT')
@@ -21,5 +22,8 @@
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
+@endif
+    <h1>This is not your post!</h1>
+    <a href="{{route('ad.index')}}"class="btn btn-primary">Go Back</a>
 </body>
 </html>

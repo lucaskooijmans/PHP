@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ad;
 use App\Models\AdType;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +19,8 @@ class AdController extends Controller
     public function index()
     {
         $ads = Ad::all();
-        return view('ad.index', compact('ads'));
+        $user = User::findorFail(Auth::id());
+        return view('ad.index', compact('ads'), compact('user'));
     }
 
     /**
@@ -63,8 +65,9 @@ class AdController extends Controller
      */
     public function edit(string $id)
     {
+        $user = User::findorFail(Auth::id());
         $ad = Ad::findOrFail($id);
-        return view('ad.edit', compact('ad'));
+        return view('ad.edit', compact('ad'), compact('user'));
     }
 
     /**
