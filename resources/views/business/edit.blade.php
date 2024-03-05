@@ -5,7 +5,7 @@
         @method('PUT')
 
         <label for="description">Description</label>
-        <input id="description" type="text" name="description">
+        <input id="description" type="text" name="description" value="{{$business->description}}">
         <br/>
 
         @foreach($ads as $ad)

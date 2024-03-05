@@ -53,7 +53,10 @@ class BusinessController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findorFail(Auth::id());
+        $ads = $user->ads()->get();
+        $business = Business::findOrFail($id);
+        return view('business.edit', compact('business'), compact('ads'));
     }
 
     /**
@@ -61,7 +64,11 @@ class BusinessController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $business = Business::findOrFail($id);
+        $business->update($request->all());
+        return view('business.show', compact('business'))->with('success', 'Business has been updated succesfully.');
+
     }
 
     /**
