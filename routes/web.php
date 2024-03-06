@@ -30,6 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('ad', AdController::class);
     Route::resource('business', BusinessController::class);
+    Route::post('/ad/{id}/favorite', [AdController::class, 'favorite'])->name('ad.favorite');
+    Route::post('/ad/{id}/unfavorite', [AdController::class, 'unfavorite'])->name('ad.unfavorite');
 });
+
 
 require __DIR__.'/auth.php';
