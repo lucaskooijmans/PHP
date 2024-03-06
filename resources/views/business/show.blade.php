@@ -7,15 +7,7 @@
     <title>Business Profile</title>
 </head>
 <body>
-<nav class="container-fluid">
-    <ul>
-        <li><strong>Business Profile</strong></li>
-    </ul>
-    <ul>
-        <li><a href="{{route('ad.index')}}">Home</a></li>
-        <li><a href="#" role="button">Contact Us</a></li>
-    </ul>
-</nav>
+<x-nav/>
 <main class="container">
     <section>
         <h2>{{$user->name}}</h2>
@@ -31,10 +23,6 @@
         @endif
     </section>
 </main>
-<footer class="container">
-    <small>
-        <a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a>
-    </small>
-</footer>
+<x-footer/>
 </body>
 </html>

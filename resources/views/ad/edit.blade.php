@@ -7,16 +7,7 @@
     <title>Create Advertisement</title>
 </head>
 <body>
-<nav class="container-fluid">
-    <ul>
-        <li><strong>Create Ad</strong></li>
-    </ul>
-    <ul>
-        <li><a href="{{route('ad.index')}}">Home</a></li>
-        <li><a href="#">All Ads</a></li>
-        <li><a href="#" role="button">Contact Us</a></li>
-    </ul>
-</nav>
+<x-nav/>
 @if($ad->user->id == Auth::id())
 <main class="container">
     <section>
@@ -66,10 +57,6 @@
     <p>This is not your ad!</p>
     <a href="{{route('ad.index')}}"class="btn btn-primary">Go Back</a>
 @endif
-<footer class="container">
-    <small>
-        <a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a>
-    </small>
-</footer>
+<x-footer/>
 </body>
 </html>

@@ -7,26 +7,7 @@
     <title>Marketplace Home</title>
 </head>
 <body>
-<nav class="container-fluid">
-    <ul>
-        <li><strong>Marketplace</strong></li>
-    </ul>
-    <ul>
-        <li><a href="{{route('ad.create')}}">Create Ad</a></li>
-        <li><a href="#" role="button">Contact Us</a></li>
-        @if(!Auth::check())
-            <li><a href="{{route('login')}}">Login</a></li>
-            <li><a href="{{route('register')}}">Register</a></li>
-        @else
-            <li>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button role="button" type="submit">Log out</button>
-                </form>
-            </li>
-        @endif
-    </ul>
-</nav>
+<x-nav/>
 <main class="container">
     <div class="grid">
         <section>
@@ -55,11 +36,7 @@
         </section>
     </div>
 </main>
-<footer class="container">
-    <small>
-        <a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a>
-    </small>
-</footer>
+<x-footer/>
 </body>
 </html>
 
