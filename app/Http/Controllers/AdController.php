@@ -66,9 +66,10 @@ class AdController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::findorFail(Auth::id());
         $ad = Ad::findOrFail($id);
-        return view('ad.edit', compact('ad'), compact('user'));
+        $categories = Category::all();
+        $types = AdType::all();
+        return view('ad.edit', compact('ad', 'categories', 'types'));
     }
 
     /**

@@ -12,7 +12,6 @@
         <li><strong>Marketplace</strong></li>
     </ul>
     <ul>
-        <li><a href="#">Home</a></li>
         <li><a href="{{route('ad.create')}}">Create Ad</a></li>
         <li><a href="#" role="button">Contact Us</a></li>
         @if(!Auth::check())

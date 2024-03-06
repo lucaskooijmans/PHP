@@ -27,6 +27,9 @@
         <figure>
             <img src="https://source.unsplash.com/random/600x400?apartment" alt="Apartment Image" />
         </figure>
+        @if($ad->user->id == Auth::id())
+            <a href="{{route('ad.edit', $ad)}}" role="button">Edit</a>
+        @endif
     </section>
 </main>
 <footer class="container">
