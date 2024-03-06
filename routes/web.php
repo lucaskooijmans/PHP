@@ -31,8 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('ad', AdController::class)->except('index', 'show');
     Route::resource('business', BusinessController::class);
+    Route::post('/ad/{id}/favorite', [AdController::class, 'favorite'])->name('ad.favorite');
+    Route::post('/ad/{id}/unfavorite', [AdController::class, 'unfavorite'])->name('ad.unfavorite');
 });
-
 Route::get('/ad', [AdController::class, 'index'])->name('ad.index');
 Route::get('/ad/{id}', [AdController::class, 'show'])->name('ad.show');
 
