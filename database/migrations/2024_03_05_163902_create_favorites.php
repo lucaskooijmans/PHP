@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->unique();
+            $table->foreignId('user_id');
             $table->foreignId('ad_id')->unique();
             $table->timestamps();
         });
