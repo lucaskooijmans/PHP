@@ -1,17 +1,28 @@
-<x-header/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>Business Profile</title>
+</head>
 <body>
-    <h1>{{$business->title}}</h1>
-    <img src="{{asset($business->image_path)}}">
-    <div>
-        @if($business->featuredAd)
-        <ul>
-            <li><h2>{{$business->featuredAd->title}}</h2></li>
-            <li><p>{{$business->featuredAd->description}}</p></li>
-            <li><p>{{$business->featuredAd->price}}</p></li>
-        </ul>
+<x-nav/>
+<main class="container">
+    <section>
+        <h2>{{$user->name}}</h2>
+        <p>{{$business->description}}</p>
+        <h3>Featured Ad</h3>
+        <p>{{$business->featuredAd->title}}</p>
+        <img src="https://source.unsplash.com/random/300x200?business" alt="Featured Ad" />
+        <p>Price: {{$business->featuredAd->price}}</p>
+        <img src="https://source.unsplash.com/random/400x300?company" alt="Business Picture" />
+        <br>
+        @if($business->featuredAd->user->id == Auth::id())
+            <a href="{{route('business.edit', $business)}}" role="button">Edit</a>
         @endif
-    </div>
-    <p>{{$business->description}}</p>
-    <a href="{{ route('business.edit', $business->id) }}" class="btn btn-primary">Edit</a>
+    </section>
+</main>
+<x-footer/>
 </body>
 </html>

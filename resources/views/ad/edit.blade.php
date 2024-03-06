@@ -1,29 +1,62 @@
-<x-header/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>Create Advertisement</title>
+</head>
 <body>
-@if($ad->user->id == $user->id)
-    <form action="{{route('ad.update', $ad->id)}}" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="form-group">
-            <label for="title">Title: </label>
-            <input type="text" class="form-control" id="title" name="title" value="{{$ad->title}}">
-        </div>
-        <div class="form-group">
-            <label for="description">Description: </label>
-            <input type="text" class="form-control" id="description" name="description" value="{{$ad->description}}">
-        </div>
-        <div class="form-group">
-            <label for="price">Price: </label>
-            <input type="number" class="form-control" id="price" name="price" value="{{$ad->price}}">
-        </div>
-        <div class="form-group">
-            <label for="title">Postalcode: </label>
-            <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{$ad->postalcode}}">
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-    </form>
-@endif
-    <h1>This is not your post!</h1>
+<x-nav/>
+@if($ad->user->id == Auth::id())
+<main class="container">
+    <section>
+        <form method="POST" action="{{route('ad.store')}}">
+            @csrf
+            @method('PUT')
+            <div class="grid">
+                <div class="column">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required value="{{$ad->title}}">
+                </div>
+                <div class="column">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="4" required>{{$ad->description}}</textarea>
+                </div>
+                <div class="column">
+                    <label for="price">Price</label>
+                    <input type="text" id="price" name="price" required value="{{$ad->price}}">
+                </div>
+                <div class="column">
+                    <label for="postalcode">Postal Code</label>
+                    <input type="text" id="postalcode" name="postalcode" required value="{{$ad->postalcode}}">
+                </div>
+                <div class="column">
+                    <fieldset>
+                        <legend>Category</legend>
+                        @foreach($categories as $category)
+                            <label><input type="radio" name="category" value="{{$category->id}}" required> {{$category->name}}</label>
+                        @endforeach
+                    </fieldset>
+                </div>
+                <div class="column">
+                    <fieldset>
+                        <legend>Type</legend>
+                        @foreach($types as $type)
+                            <label><input type="radio" name="type" value="{{$type->id}}" required> {{$type->name}}</label>
+                        @endforeach
+                    </fieldset>
+                </div>
+            </div>
+            <button type="submit">Submit Ad</button>
+        </form>
+    </section>
+</main>
+@else
+    <h1>Not your ad</h1>
+    <p>This is not your ad!</p>
     <a href="{{route('ad.index')}}"class="btn btn-primary">Go Back</a>
+@endif
+<x-footer/>
 </body>
 </html>
