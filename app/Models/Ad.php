@@ -52,4 +52,8 @@ class Ad extends Model
     {
         return $this->belongsToMany(User::class, 'favorites');
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
