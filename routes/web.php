@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('business', BusinessController::class);
     Route::post('/ad/{id}/favorite', [AdController::class, 'favorite'])->name('ad.favorite');
     Route::post('/ad/{id}/unfavorite', [AdController::class, 'unfavorite'])->name('ad.unfavorite');
+    Route::resource('order', OrderController::class)->except('create');
+    Route::get('/ad/{id}/create-order', [OrderController::class, 'create'])->name('order.create');
 });
 Route::get('/ad', [AdController::class, 'index'])->name('ad.index');
 Route::get('/ad/{id}', [AdController::class, 'show'])->name('ad.show');
