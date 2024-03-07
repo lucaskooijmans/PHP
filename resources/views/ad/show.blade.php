@@ -20,6 +20,8 @@
         </figure>
         @if($ad->user->id == Auth::id())
             <a href="{{route('ad.edit', $ad)}}" role="button">Edit</a>
+        @else
+            <a href="{{route('order.create', $ad->id)}}" role="button">Buy</a>
         @endif
     </section>
 </main>
