@@ -22,7 +22,7 @@
                     <a href="{{route('ad.show', $ad)}}">
                         <article class="column" style="padding:20px;">
                             <h4>{{$ad->title}}</h4>
-                            <img src="https://source.unsplash.com/random/200x150" alt="Item Image" />
+                            <img src="https://picsum.photos/300/200" alt="Item Image" />
                             <p>{{$ad->price}}</p>
                         </article>
                     </a>

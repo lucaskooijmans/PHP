@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             TypesSeeder::class,
             UserSeeder::class,
             BusinessSeeder::class,
+            ShippingMethodSeeder::class,
             AdSeeder::class,
         ]);
     }
