@@ -104,4 +104,9 @@ class AdController extends Controller
         auth()->user()->favorites()->detach($ad->id);
         return redirect()->route('ad.show', compact('ad', 'id'))->with('success', 'Ad has been unfavorited succesfully.');
     }
+
+    public function all(){
+        $allAds = Ad::all();
+        return view('ad.all', compact('allAds'));
+    }
 }

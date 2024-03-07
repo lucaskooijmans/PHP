@@ -9,6 +9,7 @@
 <body>
 <x-nav/>
 <main class="container">
+    <h1>Create advertisement</h1>
     <section>
         <form method="POST" action="{{route('ad.store')}}">
             @csrf
@@ -46,7 +47,7 @@
                     </fieldset>
                 </div>
             </div>
-            <button type="submit">Submit Ad</button>
+            <button type="submit">Submit</button>
         </form>
     </section>
 </main>

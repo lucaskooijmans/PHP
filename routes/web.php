@@ -39,5 +39,6 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/ad', [AdController::class, 'index'])->name('ad.index');
 Route::get('/ad/{id}', [AdController::class, 'show'])->name('ad.show');
+Route::get('/all-ads', [AdController::class, 'all'])->name('ad.all');
 
 require __DIR__.'/auth.php';
