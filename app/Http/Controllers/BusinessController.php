@@ -37,6 +37,7 @@ class BusinessController extends Controller
             'featured_ad' => $request->featured_ad,
             'user_id' => Auth::id(),
         ]);
+        return view('business.show', compact('business'));
     }
 
     /**
@@ -44,8 +45,9 @@ class BusinessController extends Controller
      */
     public function show(string $id)
     {
+        $user = User::findOrFail(Auth::id());
         $business = Business::findOrFail($id);
-        return view('business.show', compact('business'));
+        return view('business.show', compact('business', 'user'));
     }
 
     /**

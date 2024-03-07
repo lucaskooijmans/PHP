@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdController;
 
@@ -17,7 +18,7 @@ use App\Http\Controllers\AdController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('ad.index');
 });
 
 Route::get('/dashboard', function () {
@@ -28,11 +29,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('ad', AdController::class);
+    Route::resource('ad', AdController::class)->except('index', 'show');
     Route::resource('business', BusinessController::class);
     Route::post('/ad/{id}/favorite', [AdController::class, 'favorite'])->name('ad.favorite');
     Route::post('/ad/{id}/unfavorite', [AdController::class, 'unfavorite'])->name('ad.unfavorite');
 });
-
+Route::get('/ad', [AdController::class, 'index'])->name('ad.index');
+Route::get('/ad/{id}', [AdController::class, 'show'])->name('ad.show');
 
 require __DIR__.'/auth.php';

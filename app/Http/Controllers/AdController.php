@@ -18,9 +18,8 @@ class AdController extends Controller
      */
     public function index()
     {
-        $ads = Ad::all();
-        $user = User::findorFail(Auth::id());
-        return view('ad.index', compact('ads'), compact('user'));
+        $ads = Ad::orderBy('created_at', 'desc')->take(5)->get();
+        return view('ad.index', compact('ads'));
     }
 
     /**
@@ -49,6 +48,7 @@ class AdController extends Controller
             'category_id' => Category::findOrFail($request->category)->id,
             'type_id' => AdType::findOrFail($request->type)->id,
         ]);
+        return view('ad.show', compact('ad'));
 
     }
 
@@ -57,7 +57,8 @@ class AdController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $ad = Ad::findOrFail($id);
+        return view('ad.show', compact('ad'));
     }
 
     /**
@@ -65,9 +66,10 @@ class AdController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::findorFail(Auth::id());
         $ad = Ad::findOrFail($id);
-        return view('ad.edit', compact('ad'), compact('user'));
+        $categories = Category::all();
+        $types = AdType::all();
+        return view('ad.edit', compact('ad', 'categories', 'types'));
     }
 
     /**

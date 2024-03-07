@@ -1,22 +1,41 @@
-<x-header/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>Create Business</title>
+</head>
 <body>
-    <form action="{{route('business.update', $business->id)}}" method="POST">
-        @csrf
-        @method('PUT')
-
-        <label for="description">Description</label>
-        <input id="description" type="text" name="description" value="{{$business->description}}">
-        <br/>
-
-        @foreach($ads as $ad)
-            <label>
-                <input id="featured_ad" type="radio" name="featured_ad" value="{{ $ad->id }}">
-                {{ $ad->title }}
-            </label>
-            <br/>
-        @endforeach
-
-        <button type="submit">Submit</button>
-    </form>
+<x-nav/>
+<main class="container">
+    <section>
+        <form method="POST" action="{{route('business.store')}}">
+            @csrf
+            @method('PUT')
+            <div class="grid">
+                <div class="column">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="4" required>{{$business->description}}</textarea>
+                </div>
+                <div class="column">
+                    <label for="featuredAd">Featured Ad</label>
+                    <select id="featuredAd" name="featuredAd" required>
+                        <option value="">Select an Ad</option>
+                        @foreach($ads as $ad)
+                            <option value="{{$ad->id}}">{{$ad->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="column">
+                    <label for="businessPhoto">Upload Photo</label>
+                    <input type="file" id="businessPhoto" name="image_path">
+                </div>
+            </div>
+            <button type="submit">Save Business</button>
+        </form>
+    </section>
+</main>
+<x-footer/>
 </body>
 </html>
