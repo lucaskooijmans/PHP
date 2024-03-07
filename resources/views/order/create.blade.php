@@ -39,6 +39,12 @@
                 <option value="{{$shippingMethod->id}}">{{$shippingMethod->name}}</option>
                 @endforeach
             </select>
+            @if($ad->adType->id === 2)
+                <label for="start_date">Start date</label>
+                <input type="date" id="start_date" name="start_date" required>
+                <label for="end_date">End date</label>
+                <input type="date" id="end_date" name="end_date" required>
+            @endif
             <button type="submit">Submit Order</button>
         </form>
     </section>

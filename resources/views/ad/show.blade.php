@@ -21,7 +21,11 @@
         @if($ad->user->id == Auth::id())
             <a href="{{route('ad.edit', $ad)}}" role="button">Edit</a>
         @else
-            <a href="{{route('order.create', $ad->id)}}" role="button">Buy</a>
+            @if($ad->adType->id === 1)
+                <a href="{{route('order.create', $ad->id)}}" role="button">Buy</a>
+            @else
+                <a href="{{route('order.create', $ad->id)}}" role="button">Rent</a>
+            @endif
         @endif
     </section>
 </main>

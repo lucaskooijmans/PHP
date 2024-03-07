@@ -40,11 +40,14 @@ class OrderController extends Controller
             'user_id' => $userId,
             'ad_id' => $request->ad_id,
             'postalcode' => $request->postalcode,
+            'start_date' =>$request->start_date,
+            'end_date' => $request->end_date,
             'house_number' => $request->house_number,
             'street' => $request->street,
             'city' => $request->city,
             'shipping_method_id' => $request->shipping_method_id,
         ]);
+        return view('order.show', compact('order'));
     }
 
     /**
