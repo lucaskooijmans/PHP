@@ -36,6 +36,7 @@ class OrderController extends Controller
         $userId = Auth::id();
 
         $order = Order::create([
+            'name' => $request->name,
             'user_id' => $userId,
             'ad_id' => $request->ad_id,
             'postalcode' => $request->postalcode,
@@ -51,7 +52,8 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $order = Order::findOrFail($id);
+        return view('order.show', compact('order'));
     }
 
     /**

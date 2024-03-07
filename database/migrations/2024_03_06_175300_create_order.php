@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->foreignId('user_id');
             $table->foreignId('ad_id');
             $table->string('postalcode');
