@@ -10,13 +10,24 @@
 <x-nav/>
 <main class="container">
     <section>
+        @if(auth()->check() && auth()->user()->favorites->contains($ad->id))
+            <form action="{{ route('ad.unfavorite', $ad->id) }}" method="post">
+                @csrf
+                <input type="image" alt="unfavorite" src="/images/star-solid.svg" />
+            </form>
+        @else
+            <form action="{{ route('ad.favorite', $ad->id) }}" method="post">
+                @csrf
+                <input type="image" alt="favorite" src="/images/star-regular.svg" />
+            </form>
+        @endif
         <h2>{{$ad->title}}</h2>
         <p><strong>Description:</strong> {{$ad->description}}</p>
         <p><strong>Price:</strong> {{$ad->price}}</p>
         <p><strong>Category:</strong> {{$ad->category->name}}</p>
         <p><strong>Type:</strong> {{$ad->adType->name}}</p>
         <figure>
-            <img src="https://source.unsplash.com/random/600x400?apartment" alt="Apartment Image" />
+            <img src="https://picsum.photos/300/200" alt="Apartment Image" />
         </figure>
         @if($ad->user->id == Auth::id())
             <a href="{{route('ad.edit', $ad)}}" role="button">Edit</a>

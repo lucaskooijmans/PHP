@@ -95,13 +95,13 @@ class AdController extends Controller
     {
         $ad = Ad::findOrFail($id);
         auth()->user()->favorites()->attach($ad->id);
-        return redirect()->route('ad.index')->with('success', 'Ad has been favorited succesfully.');
+        return redirect()->route('ad.show', compact('ad', 'id'))->with('success', 'Ad has been favorited succesfully.');
     }
 
     public function unfavorite($id)
     {
         $ad = Ad::findOrFail($id);
         auth()->user()->favorites()->detach($ad->id);
-        return redirect()->route('ad.index')->with('success', 'Ad has been unfavorited succesfully.');
+        return redirect()->route('ad.show', compact('ad', 'id'))->with('success', 'Ad has been unfavorited succesfully.');
     }
 }
