@@ -109,4 +109,11 @@ class AdController extends Controller
         $allAds = Ad::all();
         return view('ad.all', compact('allAds'));
     }
+
+    public function myAdvertisements()
+    {
+        $user = Auth::user();
+        $myAds = $user->ads()->get();
+        return view('ad.my', compact('myAds'));
+    }
 }

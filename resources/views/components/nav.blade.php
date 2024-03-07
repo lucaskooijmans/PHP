@@ -5,6 +5,7 @@
     <ul>
         <li><a href="{{route('ad.index')}}" role="button">HOME</a></li>
         <li><a href="{{route('ad.all')}}" role="button">ALL</a></li>
+        <li><a href="{{route('ad.my')}}" role="button">MY</a></li>
         <li><a href="{{route('ad.create')}}" role="button">CREATE</a></li>
         <li><a href="#" role="button">CONTACT</a></li>
         @if(!Auth::check())
