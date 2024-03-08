@@ -5,44 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>All Advertisements</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <style>
-        /* Custom styles */
-        .advertisement {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.2s;
-            width: calc(33.333% - 20px);
-            margin-right: 20px;
-            float: left;
-        }
-
-        .advertisement:nth-child(3n) {
-            margin-right: 0;
-        }
-
-        .advertisement:hover {
-            transform: scale(1.05);
-        }
-
-        .advertisement img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .advertisement-title {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/ads.css')}}">
 </head>
 <body>
 <x-nav/>
@@ -53,7 +16,7 @@
     <div class="row">
         @foreach($allAds as $ad)
             <div class="advertisement" onclick="location.href='{{ route('ad.show', $ad->id) }}';">
-                <h2 class="advertisement-title">{{ $ad->title }}</h2>
+                <h3>{{ $ad->title }}</h3>
                 <img src="https://picsum.photos/300/200" alt="Advertisement Image"/>
                 <p><strong>Description:</strong> {{ $ad->description }}</p>
                 <p><strong>Price:</strong> {{ $ad->price }}</p>

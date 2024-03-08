@@ -5,47 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My advertisements</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <style>
-        /* Custom styles */
-        .advertisement {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.2s;
-            width: calc(33.333% - 20px);
-            margin-right: 20px;
-            float: left;
-        }
+    <link rel="stylesheet" href="{{ asset('css/ads.css')}}">
+    <script>
+        // Get the expiration time for each advertisement and update the countdown
+        @foreach($myAds as $adv)
+        var expiresAt{{ $adv->id }} = new Date('{{ $adv->expires_at }}').getTime();
 
-        .advertisement:nth-child(3n) {
-            margin-right: 0;
-        }
+        // Update the countdown every second
+        var x{{ $adv->id }} = setInterval(function () {
+            var now = new Date().getTime();
+            var distance = expiresAt{{ $adv->id }} - now;
 
-        .advertisement:hover {
-            transform: scale(1.05);
-        }
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        .advertisement img {
-            max-width: 100%;
-            height: auto;
-        }
+            // Output the countdown
+            document.getElementById("expires-in-{{ $adv->id }}").innerHTML = "Expires in: " + days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
 
-        .advertisement-title {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
+            // If the countdown is over, display expired
+            if (distance < 0) {
+                clearInterval(x{{ $adv->id }});
+                document.getElementById("expires-in-{{ $adv->id }}").innerHTML = "EXPIRED";
 
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-    </style>
 
+                // Send AJAX request to update is_expired status
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "{{ route('ad.updateExpiredStatus', $adv->id) }}", true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify({ is_expired: 1 })); // Set is_expired to true
+            }
+        }, 1000);
+        @endforeach
+    </script>
 </head>
 <body>
+
 <x-nav/>
 
 <main class="container">
@@ -54,12 +51,13 @@
     <div class="row">
         @foreach($myAds as $ad)
             <div class="advertisement" onclick="location.href='{{ route('ad.show', $ad->id) }}';">
-                <h2 class="advertisement-title">{{ $ad->title }}</h2>
+                <h3>{{ $ad->title }}</h3>
                 <img src="https://picsum.photos/300/200" alt="Advertisement Image"/>
                 <p><strong>Description:</strong> {{ $ad->description }}</p>
                 <p><strong>Price:</strong> {{ $ad->price }}</p>
                 <p><strong>Category:</strong> {{ $ad->category->name }}</p>
                 <p><strong>Type:</strong> {{ $ad->adType->name }}</p>
+                <p id="expires-in-{{ $ad->id }}"></p>
             </div>
         @endforeach
     </div>
@@ -67,5 +65,6 @@
 </main>
 
 <x-footer/>
+
 </body>
 </html>

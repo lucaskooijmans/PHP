@@ -106,7 +106,7 @@ class AdController extends Controller
     }
 
     public function all(){
-        $allAds = Ad::all();
+        $allAds = Ad::all()->where('is_expired', false);
         return view('ad.all', compact('allAds'));
     }
 
@@ -115,5 +115,15 @@ class AdController extends Controller
         $user = Auth::user();
         $myAds = $user->ads()->get();
         return view('ad.my', compact('myAds'));
+    }
+
+    public function updateExpiredStatus(Request $request, $id)
+    {
+        $ad = Ad::findOrFail($id);
+        $ad->update([
+            'is_expired' => $request->is_expired
+        ]);
+
+        return response()->json(['success' => true]);
     }
 }
