@@ -40,16 +40,12 @@
         </div>
 
         <div class="mt-4">
-            <x-input-label for="type" :value="__('Type')" />
-
-            @foreach ($roles as $role)
-                <label>
-                    <input id="type" type="radio" name="role_id" value="{{ $role->id }}">
-                    {{ $role->name }}
-                </label>
-                <br/>
-            @endforeach
-
+            <label for="role">Role</label>
+            <select id="role" name="role_id" required>
+                @foreach($roles as $role)
+                    <option value="{{$role->id}}">{{$role->name}}</option>
+                @endforeach
+            </select>
             <x-input-error :messages="$errors->get('type')" class="mt-2" />
         </div>
 
