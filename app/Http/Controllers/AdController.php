@@ -27,9 +27,17 @@ class AdController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        $types = AdType::all();
-        return view('ad.create', compact('categories'), compact('types'));
+        $user = User::findOrFail(Auth::id());
+        if($user->role->id === 1)
+        {
+            $ads = Ad::orderBy('created_at', 'desc')->take(5)->get();
+            return view('ad.index', compact('ads'));
+        } else
+        {
+            $categories = Category::all();
+            $types = AdType::all();
+            return view('ad.create', compact('categories'), compact('types'));
+        }
     }
 
     /**
