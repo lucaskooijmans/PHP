@@ -12,8 +12,7 @@
         <li><strong>Create Review</strong></li>
     </ul>
     <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">View Reviews</a></li>
+        <li><a href="{{route('ad.index')}}">Home</a></li>
         <li><a href="#" role="button">Contact Us</a></li>
     </ul>
 </nav>
