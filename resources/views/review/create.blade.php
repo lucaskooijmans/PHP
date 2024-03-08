@@ -18,6 +18,10 @@
     </ul>
 </nav>
 <main class="container">
+    @if($ad->id === Auth::id())
+        <h1>You can't review yourselve!</h1>
+        <a href="{{route('ad.index')}}"class="btn btn-primary">Go Back</a>
+    @else
     <section>
         <form method="POST" action="{{route('review.store')}}">
             @csrf
@@ -43,6 +47,7 @@
             <button type="submit">Submit Review</button>
         </form>
     </section>
+    @endif
 </main>
 <footer class="container">
     <small>
