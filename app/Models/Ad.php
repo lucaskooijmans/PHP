@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,10 +10,18 @@ class Ad extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-
-    ];
+    protected $guarded = [];
     protected $table = 'ad';
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($ad) {
+            $ad->expires_at = Carbon::now()->addDays(7)->addHour(); // ->addHour() because MySQL timezone is kut
+//            $ad->expires_at = Carbon::now()->addHour()->addSeconds(10); // for testing
+        });
+    }
 
     public function parent()
     {
@@ -39,9 +48,9 @@ class Ad extends Model
     {
         return $this->hasMany(AdBid::class);
     }
-    public function adRatings()
+    public function reviews()
     {
-        return $this->hasMany(AdRating::class);
+        return $this->hasMany(Review::class);
     }
     public function business()
     {

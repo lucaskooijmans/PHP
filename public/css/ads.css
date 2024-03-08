@@ -1,0 +1,31 @@
+/* Custom styles */
+.advertisement {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: calc(33.333% - 20px);
+    margin-right: 20px;
+    float: left;
+}
+
+.advertisement:nth-child(3n) {
+    margin-right: 0;
+}
+
+.advertisement:hover {
+    transform: scale(1.05);
+}
+
+.advertisement img {
+    max-width: 100%;
+    height: auto;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}

@@ -24,6 +24,8 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->foreignId('type_id');
             $table->foreignId('business_id')->nullable();
+            $table->timestamp('expires_at')->nullable();
+            $table->boolean('is_expired')->default(false);
             $table->timestamps();
         });
     }

@@ -27,9 +27,17 @@ class AdController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        $types = AdType::all();
-        return view('ad.create', compact('categories'), compact('types'));
+        $user = User::findOrFail(Auth::id());
+        if($user->role->id === 1)
+        {
+            $ads = Ad::orderBy('created_at', 'desc')->take(5)->get();
+            return view('ad.index', compact('ads'));
+        } else
+        {
+            $categories = Category::all();
+            $types = AdType::all();
+            return view('ad.create', compact('categories'), compact('types'));
+        }
     }
 
     /**
@@ -103,5 +111,24 @@ class AdController extends Controller
         $ad = Ad::findOrFail($id);
         auth()->user()->favorites()->detach($ad->id);
         return redirect()->route('ad.show', compact('ad', 'id'))->with('success', 'Ad has been unfavorited succesfully.');
+    }
+
+    public function all(){
+        $allAds = Ad::all()->where('is_expired', false);
+        return view('ad.all', compact('allAds'));
+    }
+
+    public function myAdvertisements()
+    {
+        $user = Auth::user();
+        $myAds = $user->ads()->get();
+        return view('ad.my', compact('myAds'));
+    }
+
+    public function updateExpiredStatus(Request $request, string $id)
+    {
+        $ad = Ad::findOrFail($id);
+        $ad->update(['is_expired' => true]);
+        return response()->json(['message' => 'is_expired updated successfully!']);
     }
 }
