@@ -39,9 +39,9 @@ class Ad extends Model
     {
         return $this->hasMany(AdBid::class);
     }
-    public function adRatings()
+    public function reviews()
     {
-        return $this->hasMany(AdRating::class);
+        return $this->hasMany(Review::class);
     }
     public function business()
     {

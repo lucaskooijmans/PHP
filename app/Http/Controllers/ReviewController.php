@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ad;
+use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -17,9 +20,10 @@ class ReviewController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $ad = Ad::findOrFail($id);
+        return view('review.create', compact('ad'));
     }
 
     /**
@@ -27,7 +31,18 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $writer = Auth::id();
+        $ad = Ad::findOrFail($request->ad_id);
+        $review = Review::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'score' => $request->score,
+            'writer_user_id' => $writer,
+            'reciever_user_id' => $ad->user->id,
+            'ad_id' => $request->ad_id,
+        ]);
+
+        return view('ad.show', compact('ad'));
     }
 
     /**

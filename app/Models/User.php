@@ -73,9 +73,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(AdBid::class);
     }
-    public function adRatings()
+    public function recievedReviews()
     {
-        return $this->hasMany(AdRating::class);
+        return $this->hasMany(Review::class);
+    }
+    public function writtenReviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
     public function favorites()
