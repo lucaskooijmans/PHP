@@ -30,16 +30,20 @@
             <img src="https://picsum.photos/300/200" alt="Apartment Image" />
         </figure>
         <ul>
-            @foreach($ad->reviews as $review)
-                <li>
-                    <article class="column" style="padding:20px;">
-                        <h4>{{$review->title}}</h4>
-                        <p>{{$review->description}}</p>
-                        <h5>Score: {{$review->score}}</h5>
-                        <p>By {{$review->writer->name}}</p>
-                    </article>
-                </li>
-            @endforeach
+            @if(!$ad->reviews->where('writer_user_id', '===', Auth::id())->count() > 0)
+                <a href="{{route('review.create', $ad->id)}}" role="button">Leave a review</a>
+            @endif
+                @foreach($ad->reviews as $review)
+                    <li>
+                        <article class="column" style="padding:20px;">
+                            <h4>{{$review->title}}</h4>
+                            <p>{{$review->description}}</p>
+                            <h5>Score: {{$review->score}}</h5>
+                            <p>By {{$review->writer->name}}</p>
+                        </article>
+                    </li>
+                @endforeach
+
         </ul>
         @if($ad->user->id == Auth::id())
             <a href="{{route('ad.edit', $ad)}}" role="button">Edit</a>

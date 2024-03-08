@@ -6,6 +6,7 @@ use App\Models\Ad;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class ReviewController extends Controller
 {
@@ -42,7 +43,7 @@ class ReviewController extends Controller
             'ad_id' => $request->ad_id,
         ]);
 
-        return view('ad.show', compact('ad'));
+        return Redirect::route('ad.show', $ad->id);
     }
 
     /**
