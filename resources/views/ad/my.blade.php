@@ -6,20 +6,21 @@
     <title>My advertisements</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <link rel="stylesheet" href="{{ asset('css/ads.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         // Get the expiration time for each advertisement and update the countdown
         @foreach($myAds as $adv)
-        var expiresAt{{ $adv->id }} = new Date('{{ $adv->expires_at }}').getTime();
+        let expiresAt{{ $adv->id }} = new Date('{{ $adv->expires_at }}').getTime();
 
         // Update the countdown every second
-        var x{{ $adv->id }} = setInterval(function () {
-            var now = new Date().getTime();
-            var distance = expiresAt{{ $adv->id }} - now;
+        let x{{ $adv->id }} = setInterval(function () {
+            let now = new Date().getTime();
+            let distance = expiresAt{{ $adv->id }} - now;
 
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             // Output the countdown
             document.getElementById("expires-in-{{ $adv->id }}").innerHTML = "Expires in: " + days + "d " + hours + "h "
@@ -30,16 +31,19 @@
                 clearInterval(x{{ $adv->id }});
                 document.getElementById("expires-in-{{ $adv->id }}").innerHTML = "EXPIRED";
 
-
                 // Send AJAX request to update is_expired status
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "{{ route('ad.updateExpiredStatus', $adv->id) }}", true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(JSON.stringify({ is_expired: 1 })); // Set is_expired to true
+                axios.post("{{ route('ad.updateExpiredStatus', $adv->id) }}", { is_expired: true })
+                    .then(function (response) {
+                        console.log(response.data);
+                    })
+                    .catch(function (error) {
+                        console.error(error);
+                    });
             }
         }, 1000);
         @endforeach
     </script>
+
 </head>
 <body>
 

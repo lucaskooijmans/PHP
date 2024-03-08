@@ -117,13 +117,10 @@ class AdController extends Controller
         return view('ad.my', compact('myAds'));
     }
 
-    public function updateExpiredStatus(Request $request, $id)
+    public function updateExpiredStatus(Request $request, string $id)
     {
         $ad = Ad::findOrFail($id);
-        $ad->update([
-            'is_expired' => $request->is_expired
-        ]);
-
-        return response()->json(['success' => true]);
+        $ad->update(['is_expired' => true]);
+        return response()->json(['message' => 'is_expired updated successfully!']);
     }
 }

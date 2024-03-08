@@ -38,13 +38,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('order', OrderController::class)->except('create');
     Route::get('/ad/{id}/create-order', [OrderController::class, 'create'])->name('order.create');
     Route::get('/my-ads', [AdController::class, 'myAdvertisements'])->name('ad.my');
+    Route::post('/ad-update-status/{id}', [AdController::class, 'updateExpiredStatus'])->name('ad.updateExpiredStatus');
 });
 
 // Everyone can see these pages
 Route::get('/ad', [AdController::class, 'index'])->name('ad.index');
 Route::get('/ad/{id}', [AdController::class, 'show'])->name('ad.show');
 Route::get('/all-ads', [AdController::class, 'all'])->name('ad.all');
-Route::post('/ad-update-status/{id}', [AdController::class, 'updateExpiredStatus'])->name('ad.updateExpiredStatus');
 
 
 

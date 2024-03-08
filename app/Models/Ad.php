@@ -18,8 +18,8 @@ class Ad extends Model
         parent::boot();
 
         static::creating(function ($ad) {
-//            $ad->expires_at = Carbon::now()->addDays(7)->addHour(); // ->addHour() because MySQL timezone is kut
-            $ad->expires_at = Carbon::now()->addHour(7)->addSeconds(10); // for testing
+            $ad->expires_at = Carbon::now()->addDays(7)->addHour(); // ->addHour() because MySQL timezone is kut
+//            $ad->expires_at = Carbon::now()->addHour()->addSeconds(10); // for testing
         });
     }
 
