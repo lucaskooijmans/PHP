@@ -21,6 +21,7 @@
                 <input type="image" alt="favorite" src="/images/star-regular.svg" />
             </form>
         @endif
+        <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(128)->generate('http://php.test/ad/' . $ad->id)) !!} ">
         <h2>{{$ad->title}}</h2>
         <p><strong>Description:</strong> {{$ad->description}}</p>
         <p><strong>Price:</strong> {{$ad->price}}</p>
