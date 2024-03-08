@@ -112,4 +112,23 @@ class AdController extends Controller
         auth()->user()->favorites()->detach($ad->id);
         return redirect()->route('ad.show', compact('ad', 'id'))->with('success', 'Ad has been unfavorited succesfully.');
     }
+
+    public function all(){
+        $allAds = Ad::all()->where('is_expired', false);
+        return view('ad.all', compact('allAds'));
+    }
+
+    public function myAdvertisements()
+    {
+        $user = Auth::user();
+        $myAds = $user->ads()->get();
+        return view('ad.my', compact('myAds'));
+    }
+
+    public function updateExpiredStatus(Request $request, string $id)
+    {
+        $ad = Ad::findOrFail($id);
+        $ad->update(['is_expired' => true]);
+        return response()->json(['message' => 'is_expired updated successfully!']);
+    }
 }

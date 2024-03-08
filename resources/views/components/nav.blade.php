@@ -3,17 +3,19 @@
         <li><strong>Marketplace</strong></li>
     </ul>
     <ul>
-        <li><a href="{{route('ad.index')}}">Home</a></li>
-        <li><a href="{{route('ad.create')}}">Create Ad</a></li>
-        <li><a href="#" role="button">Contact Us</a></li>
+        <li><a href="{{route('ad.index')}}" role="button">HOME</a></li>
+        <li><a href="{{route('ad.all')}}" role="button">ALL</a></li>
+        <li><a href="{{route('ad.my')}}" role="button">MY</a></li>
+        <li><a href="{{route('ad.create')}}" role="button">CREATE</a></li>
+        <li><a href="#" role="button">CONTACT</a></li>
         @if(!Auth::check())
-            <li><a href="{{route('login')}}">Login</a></li>
-            <li><a href="{{route('register')}}">Register</a></li>
+            <li><a href="{{route('login')}}">LOGIN</a></li>
+            <li><a href="{{route('register')}}">REGISTER</a></li>
         @else
             <li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button role="button" type="submit">Log out</button>
+                    <button type="submit"> > LOG OUT</button>
                 </form>
             </li>
         @endif
