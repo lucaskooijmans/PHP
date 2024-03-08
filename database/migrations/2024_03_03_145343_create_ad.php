@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('postalcode');
             $table->dateTime('rent_start')->nullable();
             $table->dateTime('rent_stop')->nullable();
-            $table->string('QR_code')->nullable();
             $table->foreignId('parent_id')->nullable();
             $table->foreignId('user_id');
             $table->foreignId('category_id');
