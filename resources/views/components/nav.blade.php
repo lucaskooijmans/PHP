@@ -4,6 +4,7 @@
     </ul>
     <ul>
         <li><a href="{{route('ad.index')}}" role="button">HOME</a></li>
+        <li><a href="{{route('order.index')}}" role="button">Orders</a></li>
         <li><a href="{{route('ad.all')}}" role="button">ALL</a></li>
         <li><a href="{{route('ad.my')}}" role="button">MY</a></li>
         <li><a href="{{route('ad.create')}}" role="button">CREATE</a></li>
