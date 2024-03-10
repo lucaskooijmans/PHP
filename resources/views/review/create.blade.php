@@ -12,14 +12,13 @@
         <li><strong>Create Review</strong></li>
     </ul>
     <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">View Reviews</a></li>
+        <li><a href="{{route('ad.index')}}">Home</a></li>
         <li><a href="#" role="button">Contact Us</a></li>
     </ul>
 </nav>
 <main class="container">
     @if($ad->id === Auth::id())
-        <h1>You can't review yourselve!</h1>
+        <h1>You can't review yourself</h1>
         <a href="{{route('ad.index')}}"class="btn btn-primary">Go Back</a>
     @else
     <section>
@@ -27,7 +26,7 @@
             @csrf
             <input type="hidden" for="ad_id" name="ad_id" value="{{$ad->id}}">
             <label for="title">Title</label>
-            <input type="text" id="title" name="title" required>
+            <input type="text" id="title" name="title" required maxlength="20">
             <label for="description">Description</label>
             <textarea id="description" name="description" rows="4" required></textarea>
             <label for="score">Score</label>

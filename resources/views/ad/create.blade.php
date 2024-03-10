@@ -24,7 +24,7 @@
                 </div>
                 <div class="column">
                     <label for="price">Price</label>
-                    <input type="text" id="price" name="price" required>
+                    <input type="number" inputmode="numeric" pattern="[0-9]*" min="0" max="1000000" id="price" name="price" required>
                 </div>
                 <div class="column">
                     <label for="postalcode">Postal Code</label>
