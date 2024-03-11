@@ -36,12 +36,14 @@ Route::middleware('auth')->group(function () {
     Route::resource('business', BusinessController::class);
     Route::post('/ad/{id}/favorite', [AdController::class, 'favorite'])->name('ad.favorite');
     Route::post('/ad/{id}/unfavorite', [AdController::class, 'unfavorite'])->name('ad.unfavorite');
+    Route::get('/my-favorites', [AdController::class, 'myFavorites'])->name('ad.myFavorites');
     Route::resource('order', OrderController::class)->except('create');
     Route::get('/ad/{id}/create-order', [OrderController::class, 'create'])->name('order.create');
     Route::resource('review', ReviewController::class)->except('create');
     Route::get('/ad/{id}/create-review', [ReviewController::class, 'create'])->name('review.create');
     Route::get('/my-ads', [AdController::class, 'myAdvertisements'])->name('ad.my');
     Route::post('/ad-update-status/{id}', [AdController::class, 'updateExpiredStatus'])->name('ad.updateExpiredStatus');
+    Route::get('/my-orders', [OrderController::class, 'index'])->name('order.index');
 });
 
 // Everyone can see these pages
