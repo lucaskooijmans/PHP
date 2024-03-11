@@ -53,7 +53,7 @@
     <h1>My advertisements</h1>
 
     <div class="row">
-        @foreach($myAds as $ad)
+        @forelse($myAds as $ad)
             <div class="advertisement" onclick="location.href='{{ route('ad.show', $ad->id) }}';">
                 <h3>{{ $ad->title }}</h3>
                 <img src="https://picsum.photos/300/200" alt="Advertisement Image"/>
@@ -63,7 +63,9 @@
                 <p><strong>Type:</strong> {{ $ad->adType->name }}</p>
                 <p id="expires-in-{{ $ad->id }}"></p>
             </div>
-        @endforeach
+            @empty
+            <p>You currently have no advertisements...</p>
+        @endforelse
     </div>
     <div class="clearfix"></div>
 </main>
