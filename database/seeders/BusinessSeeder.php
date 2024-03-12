@@ -15,7 +15,7 @@ class BusinessSeeder extends Seeder
     public function run(): void
     {
         Business::create([
-            'description' => 'Wij verhuren kippen',
+            'description' => 'We rent chickens because we can.',
             'user_id' => 1,
         ]);
     }

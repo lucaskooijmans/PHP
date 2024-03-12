@@ -13,8 +13,9 @@ class CategoriesSeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create(['name' => 'auto']);
+        Category::create(['name' => 'car']);
         Category::create(['name' => 'motor']);
-        Category::create(['name' => 'vespa']);
+        Category::create(['name' => 'truck']);
+        Category::create(['name' => 'animal']);
     }
 }

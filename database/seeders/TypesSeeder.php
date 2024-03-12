@@ -13,7 +13,7 @@ class TypesSeeder extends Seeder
      */
     public function run(): void
     {
-        AdType::create(['name' => 'Kopen']);
-        AdType::create(['name' => 'Huren']);
+        AdType::create(['name' => 'Buy']);
+        AdType::create(['name' => 'Rent']);
     }
 }
