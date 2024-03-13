@@ -14,8 +14,8 @@ class AdSeeder extends Seeder
     public function run(): void
     {
         Ad::create([
-            'title' => 'Kippen te huur',
-            'description' => 'Ik verhuur mijn kippen',
+            'title' => 'Chickens for rent',
+            'description' => 'I rent out my god damn chickens',
             'price' => 10,
             'postalcode' => '1234AB',
             'user_id' => 1,
@@ -24,8 +24,8 @@ class AdSeeder extends Seeder
             'business_id' => 1,
         ]);
         Ad::create([
-            'title' => 'Auto te huur',
-            'description' => 'Ik verhuur mn merrie',
+            'title' => 'Car for rent',
+            'description' => 'I rent out my Mercedes',
             'price' => 1000,
             'postalcode' => '1235AB',
             'user_id' => 2,
@@ -33,12 +33,12 @@ class AdSeeder extends Seeder
             'type_id' => 2,
         ]);
         Ad::create([
-            'title' => 'Vespa te koop',
-            'description' => 'Ik verkoop mijn full-option vespa',
-            'price' => 1500,
+            'title' => 'Ugly baby for sale',
+            'description' => 'Dont need this baby in my life',
+            'price' => 1,
             'postalcode' => '1236AB',
             'user_id' => 3,
-            'category_id' => 3,
+            'category_id' => 4,
             'type_id' => 1,
         ]);
     }

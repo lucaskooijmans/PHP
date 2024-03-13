@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,13 +15,19 @@
 
         @forelse($orders as $order)
             <div style="border-bottom: 1px solid #ccc; margin-bottom: 20px;">
-                <h3>Order #{{$order->id}}</h3>
+                <h3>Order #{{$order->id}} | {{$order->ad->title}} | ({{$order->ad->adType->name}})</h3>
                 <p>Name: {{$order->name}}</p>
                 <p>Postal Code: {{$order->postalcode}}</p>
                 <p>City: {{$order->city}}</p>
                 <p>Street: {{$order->street}}</p>
                 <p>House Number: {{$order->house_number}}</p>
                 <p>Shipping Choice: {{$order->shippingMethod->name}}</p>
+                @if($order->ad->adType->name == 'Rent')
+                    @if($order->shippingMethod->name == 'Pick Up')
+                        <h4>Pick Up: {{Carbon::parse($order->start_date)->format('d-m-Y')}}</h4>
+                    @endif
+                    <h4>Bring Back: {{Carbon::parse($order->end_date)->format('d-m-Y')}}</h4>
+                @endif
             </div>
             @empty
             <p>You currently have no orders...</p>
