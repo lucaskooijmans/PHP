@@ -8,7 +8,7 @@
         <li><a href="{{route('ad.all')}}" role="button">ALL</a></li>
         <li><a href="{{route('ad.my')}}" role="button">MY</a></li>
         <li><a href="{{route('ad.create')}}" role="button">CREATE</a></li>
-        <li><a href="#" role="button">CONTACT</a></li>
+        <li><a href="{{route('account.index', Auth::id())}}" role="button">Account</a></li>
         @if(!Auth::check())
             <li><a href="{{route('login')}}">LOGIN</a></li>
             <li><a href="{{route('register')}}">REGISTER</a></li>
