@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/account/{id}', [AccountController::class, 'index'])->name('account.index');
     Route::post('/tokens/create', function (Request $request) {
         $token = $request->user()->createToken($request->token_name);
+        $user = $request->user();
+        return view('account.index', compact('user'));
     })->name('token.create');
     Route::get('/my-orders', [OrderController::class, 'index'])->name('order.index');
 });
