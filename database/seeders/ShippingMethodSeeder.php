@@ -13,7 +13,7 @@ class ShippingMethodSeeder extends Seeder
      */
     public function run(): void
     {
-        ShippingMethod::create(['name' => 'shipping']);
-        ShippingMethod::create(['name' => 'pick up']);
+        ShippingMethod::create(['name' => 'Shipping']);
+        ShippingMethod::create(['name' => 'Pick Up']);
     }
 }
