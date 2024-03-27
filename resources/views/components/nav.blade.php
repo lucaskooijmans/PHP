@@ -34,7 +34,6 @@
                     <button type="submit"> > LOG OUT</button>
                 </form>
             </li>
-            <li><a href="{{route('account.index', Auth::id())}}" role="button">Account</a></li>
         @endif
     </ul>
 </nav>
