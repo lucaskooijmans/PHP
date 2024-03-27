@@ -12,7 +12,9 @@
         <li><a href="{{route('ad.all')}}" role="button">All advertisements</a></li>
 
         <li class="dropdown">
-            <a href="{{route('account.index', Auth::id())}}" role="button">My profile</a>
+            @if(Auth::check())
+                <a href="{{route('account.index', Auth::id())}}" role="button">My profile</a>
+            @endif
             <ul class="dropdown-content">
                 <li><a href="{{route('ad.create')}}" role="button">Create advertisement</a></li>
                 <li><a href="{{route('ad.my')}}" role="button">My advertisements</a></li>
