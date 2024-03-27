@@ -113,6 +113,12 @@ class AdController extends Controller
         return redirect()->route('ad.show', compact('ad', 'id'))->with('success', 'Ad has been unfavorited succesfully.');
     }
 
+    public function myFavorites()
+    {
+        $myFavorites = auth()->user()->favorites()->get();
+        return view('ad.myFavorites', compact('myFavorites'));
+    }
+
     public function all(){
         $allAds = Ad::all()->where('is_expired', false);
         return view('ad.all', compact('allAds'));

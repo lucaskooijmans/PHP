@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('business', BusinessController::class);
     Route::post('/ad/{id}/favorite', [AdController::class, 'favorite'])->name('ad.favorite');
     Route::post('/ad/{id}/unfavorite', [AdController::class, 'unfavorite'])->name('ad.unfavorite');
+    Route::get('/my-favorites', [AdController::class, 'myFavorites'])->name('ad.myFavorites');
     Route::resource('order', OrderController::class)->except('create');
     Route::get('/ad/{id}/create-order', [OrderController::class, 'create'])->name('order.create');
     Route::resource('review', ReviewController::class)->except('create');
@@ -48,6 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/tokens/create', function (Request $request) {
         $token = $request->user()->createToken($request->token_name);
     })->name('token.create');
+    Route::get('/my-orders', [OrderController::class, 'index'])->name('order.index');
 });
 
 // Everyone can see these pages

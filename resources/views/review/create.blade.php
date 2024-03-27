@@ -4,19 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <title>Create Review</title>
+    <title>Create review</title>
 </head>
 <body>
-<nav class="container-fluid">
-    <ul>
-        <li><strong>Create Review</strong></li>
-    </ul>
-    <ul>
-        <li><a href="{{route('ad.index')}}">Home</a></li>
-        <li><a href="#" role="button">Contact Us</a></li>
-    </ul>
-</nav>
+<x-nav/>
 <main class="container">
+    <h1>Create review</h1>
     @if($ad->id === Auth::id())
         <h1>You can't review yourself</h1>
         <a href="{{route('ad.index')}}"class="btn btn-primary">Go Back</a>
@@ -48,10 +41,6 @@
     </section>
     @endif
 </main>
-<footer class="container">
-    <small>
-        <a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a>
-    </small>
-</footer>
+<x-footer/>
 </body>
 </html>

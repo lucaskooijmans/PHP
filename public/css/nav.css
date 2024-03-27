@@ -1,0 +1,35 @@
+/* Style the dropdown */
+.dropdown {
+    position: relative;
+}
+
+/* Style the dropdown button */
+.dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 240px;
+    z-index: 1;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+/* Show the dropdown content when the dropdown is hovered over */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
