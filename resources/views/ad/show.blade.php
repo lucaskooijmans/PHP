@@ -10,17 +10,23 @@
 <x-nav/>
 <main class="container">
     <section>
-        @if(auth()->check() && auth()->user()->favorites->contains($ad->id))
-            <form action="{{ route('ad.unfavorite', $ad->id) }}" method="post">
-                @csrf
-                <input type="image" alt="unfavorite" src="/images/star-solid.svg" />
-            </form>
-        @else
-            <form action="{{ route('ad.favorite', $ad->id) }}" method="post">
-                @csrf
-                <input type="image" alt="favorite" src="/images/star-regular.svg" />
-            </form>
+
+        @if(!auth()->user()->isAdvertiser())
+            <div>
+                @if(auth()->check() && auth()->user()->favorites->contains($ad->id))
+                    <form action="{{ route('ad.unfavorite', $ad->id) }}" method="post">
+                        @csrf
+                        <input type="image" alt="unfavorite" src="/images/star-solid.svg" />
+                    </form>
+                @else
+                    <form action="{{ route('ad.favorite', $ad->id) }}" method="post">
+                        @csrf
+                        <input type="image" alt="favorite" src="/images/star-regular.svg" />
+                    </form>
+                @endif
+            </div>
         @endif
+
         <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(128)->generate('http://php.test/ad/' . $ad->id)) !!} ">
         <h2>{{$ad->title}}</h2>
         <p><strong>Description:</strong> {{$ad->description}}</p>

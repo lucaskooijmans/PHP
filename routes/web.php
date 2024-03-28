@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/my-ads', [AdController::class, 'myAdvertisements'])->name('ad.my');
     Route::post('/ad-update-status/{id}', [AdController::class, 'updateExpiredStatus'])->name('ad.updateExpiredStatus');
     Route::get('/my-orders', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/my-advertiser-orders', [OrderController::class, 'advertiserOrders'])->name('order.advertiserOrders');
 });
 
 // Everyone can see these pages

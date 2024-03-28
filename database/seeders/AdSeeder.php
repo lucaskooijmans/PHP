@@ -37,7 +37,7 @@ class AdSeeder extends Seeder
             'description' => 'Dont need this baby in my life',
             'price' => 1,
             'postalcode' => '1236AB',
-            'user_id' => 3,
+            'user_id' => 2,
             'category_id' => 4,
             'type_id' => 1,
         ]);
