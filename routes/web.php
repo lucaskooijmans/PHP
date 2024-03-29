@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
         return view('account.index', compact('user'));
     })->name('token.create');
     Route::get('/my-orders', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/my-advertiser-orders', [OrderController::class, 'advertiserOrders'])->name('order.advertiserOrders');
 });
 
 // Everyone can see these pages

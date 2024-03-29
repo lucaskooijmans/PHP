@@ -13,7 +13,7 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() // User (not advertiser) -> My Orders
     {
         $orders = Order::all()->where('user_id', '===', Auth::id());
         return view('order.index', compact('orders'));
@@ -82,5 +82,15 @@ class OrderController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function advertiserOrders()
+    {
+        $advertiserId = auth()->id();
+        $orders = Order::whereHas('ad', function ($query) use ($advertiserId) {
+            $query->where('user_id', $advertiserId);
+        })->get();
+
+        return view('order.advertiser_orders', compact('orders'));
     }
 }

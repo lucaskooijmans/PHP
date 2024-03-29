@@ -28,11 +28,15 @@
                     </a>
                 @endforeach
             </div>
-            <h3>Post your advertisement</h3>
-            <p>Reach a wide audience by posting your advertisement today. It's simple and fast!</p>
-            <a href="{{route('ad.create')}}">
-                <button>Create</button>
-            </a>
+            @if(Auth::check())
+                @if(auth()->user()->isAdvertiser())
+                    <h3>Post your advertisement</h3>
+                    <p>Reach a wide audience by posting your advertisement today. It's simple and fast!</p>
+                    <a href="{{route('ad.create')}}">
+                        <button>Create</button>
+                    </a>
+                @endif
+            @endif
         </section>
     </div>
 </main>
