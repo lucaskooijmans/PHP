@@ -35,7 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('ad', AdController::class)->except('index', 'show');
-    Route::resource('business', BusinessController::class);
+    Route::resource('business', BusinessController::class)->except('show');
+    Route::get('/business/{slug}', [BusinessController::class, 'show'])->name('business.show');
     Route::post('/ad/{id}/favorite', [AdController::class, 'favorite'])->name('ad.favorite');
     Route::post('/ad/{id}/unfavorite', [AdController::class, 'unfavorite'])->name('ad.unfavorite');
     Route::get('/my-favorites', [AdController::class, 'myFavorites'])->name('ad.myFavorites');

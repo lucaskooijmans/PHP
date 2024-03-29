@@ -91,6 +91,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+    public function business()
+    {
+        return $this->hasOne(Business::class);
+    }
 
     public function isAdvertiser() {
         return $this->role()->whereIn('name', ['private advertiser', 'business advertiser'])->exists();
