@@ -137,4 +137,12 @@ class AdController extends Controller
         $ad->update(['is_expired' => true]);
         return response()->json(['message' => 'is_expired updated successfully!']);
     }
+
+    public function getUserAds(Request $request)
+    {
+        $user = $request->user();
+        $ads = $user->ads()->get();
+
+        return response()->json($ads);
+    }
 }
