@@ -93,7 +93,7 @@ class User extends Authenticatable
     }
 
     public function business(){
-        return $this->hasOne(Business::class);
+        return $this->belongsTo(Business::class, 'business_id');
     }
 
     public function isAdvertiser() { // mostly for UI

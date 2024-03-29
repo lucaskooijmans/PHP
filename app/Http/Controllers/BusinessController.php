@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Business;
 use App\Models\User;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -79,5 +81,31 @@ class BusinessController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function export(Business $business)
+    {
+        // Load the HTML content
+        $html = view('business.pdf', compact('business'))->render();
+
+        // Set options
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+
+        // Instantiate Dompdf
+        $dompdf = new Dompdf($options);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Set paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF (inline or attachment)
+        return $dompdf->stream($business->user->name . '_business.pdf');
     }
 }
