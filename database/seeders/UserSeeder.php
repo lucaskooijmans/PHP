@@ -15,32 +15,47 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Dummies
-         User::factory()->create([
-             'name' => 'user1',
-             'email' => 'user1@example.com',
-             'role_id' => 3,
-             'password' => Hash::make('user1')
-         ]);
+        User::factory()->create([
+            'name' => 'Aaron',
+            'email' => 'a@a.com',
+            'role_id' => 1,
+            'password' => Hash::make('a')
+        ]);
 
         User::factory()->create([
-            'name' => 'user2',
-            'email' => 'user2@example.com',
+            'name' => 'Bob',
+            'email' => 'b@b.com',
             'role_id' => 2,
-            'password' => Hash::make('user2')
+            'password' => Hash::make('b')
         ]);
+
         User::factory()->create([
-            'name' => 'user3',
-            'email' => 'user3@example.com',
-            'role_id' => 1,
-            'password' => Hash::make('user3')
+            'name' => 'Carrol',
+            'email' => 'c@c.com',
+            'role_id' => 3,
+            'password' => Hash::make('c')
         ]);
 
         // real
+        User::factory()->create([
+            'name' => 'The Great Platform Owner',
+            'email' => 'owner@owner.com',
+            'role_id' => 4,
+            'password' => Hash::make('owner')
+        ]);
+
         User::factory()->create([
             'name' => 'lucas',
             'email' => 'lucas@lucas.nl',
             'role_id' => 1,
             'password' => Hash::make('lucas')
+        ]);
+
+        User::factory()->create([
+            'name' => 'pepijn',
+            'email' => 'pepijn@pepijn.nl',
+            'role_id' => 1,
+            'password' => Hash::make('pepijn')
         ]);
     }
 }

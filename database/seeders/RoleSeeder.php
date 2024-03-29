@@ -17,5 +17,6 @@ class RoleSeeder extends Seeder
         Role::create(['name' => 'user']);
         Role::create(['name' => 'private advertiser']);
         Role::create(['name' => 'business advertiser']);
+        Role::create(['name' => 'platform owner']);
     }
 }

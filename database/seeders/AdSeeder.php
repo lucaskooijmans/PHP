@@ -18,7 +18,7 @@ class AdSeeder extends Seeder
             'description' => 'I rent out my god damn chickens',
             'price' => 10,
             'postalcode' => '1234AB',
-            'user_id' => 1,
+            'user_id' => 2,
             'category_id' => 1,
             'type_id' => 2,
             'business_id' => 1,
@@ -28,7 +28,7 @@ class AdSeeder extends Seeder
             'description' => 'I rent out my Mercedes',
             'price' => 1000,
             'postalcode' => '1235AB',
-            'user_id' => 2,
+            'user_id' => 3,
             'category_id' => 1,
             'type_id' => 2,
         ]);
