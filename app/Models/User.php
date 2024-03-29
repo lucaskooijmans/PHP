@@ -90,4 +90,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+    public function isOwner() {
+        return $this->role()->where('name', 'platform owner')->exists();
+    }
 }
