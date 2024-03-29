@@ -66,6 +66,10 @@ class AdController extends Controller
     public function show(string $id)
     {
         $ad = Ad::findOrFail($id);
+        if($ad->user->business){
+            $business = $ad->user->business;
+            return view('ad.show', compact('ad', 'business'));
+        }
         return view('ad.show', compact('ad'));
     }
 
