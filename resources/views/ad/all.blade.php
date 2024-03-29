@@ -18,6 +18,7 @@
             <div class="advertisement" onclick="location.href='{{ route('ad.show', $ad->id) }}';">
                 <h3>{{ $ad->title }}</h3>
                 <img src="https://picsum.photos/300/200" alt="Advertisement Image"/>
+                <p><strong>Advertiser:</strong> {{ $ad->user->name }}</p>
                 <p><strong>Description:</strong> {{ $ad->description }}</p>
                 <p><strong>Price:</strong> {{ $ad->price }}</p>
                 <p><strong>Category:</strong> {{ $ad->category->name }}</p>
