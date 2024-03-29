@@ -27,7 +27,7 @@
         </section>
         @if($user->tokens->count() > 0)
             <label for="api_key">API Key</label>
-            <input type="text" for="api_key" disabled name="api_key" value="{{$user->tokens->first->token->token}}">
+            <input type="text" for="api_key" contenteditable="false" name="api_key" value="{{$user->tokens->first->token->token}}">
         @else
             <form method="POST" action="{{route('token.create')}}">
                 @csrf
