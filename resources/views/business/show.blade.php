@@ -27,9 +27,8 @@
         @endif
 
         @if(Auth::check() && auth()->user()->isOwner())
-
+            <a href="{{ route('business.export', $business) }}" role="button">Export to PDF</a>
         @endif
-        <a href="{{ route('business.export', $business) }}" role="button">Export to PDF</a>
 
     </section>
 </main>
