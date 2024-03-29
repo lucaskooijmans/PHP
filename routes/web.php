@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdController;
@@ -43,6 +45,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/ad/{id}/create-review', [ReviewController::class, 'create'])->name('review.create');
     Route::get('/my-ads', [AdController::class, 'myAdvertisements'])->name('ad.my');
     Route::post('/ad-update-status/{id}', [AdController::class, 'updateExpiredStatus'])->name('ad.updateExpiredStatus');
+    Route::get('/account/{id}', [AccountController::class, 'index'])->name('account.index');
+    Route::post('/tokens/create', function (Request $request) {
+        $token = $request->user()->createToken($request->token_name);
+        $user = $request->user();
+        return view('account.index', compact('user'));
+    })->name('token.create');
     Route::get('/my-orders', [OrderController::class, 'index'])->name('order.index');
     Route::get('/my-advertiser-orders', [OrderController::class, 'advertiserOrders'])->name('order.advertiserOrders');
 });

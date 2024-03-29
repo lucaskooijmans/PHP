@@ -14,7 +14,9 @@
         <!-- My Profile dropdown (visible only when user is logged in) -->
         @if(Auth::check())
             <li class="dropdown">
-                <a href="#" role="button">My profile</a>
+                @if(Auth::check())
+                    <a href="{{route('account.index', Auth::id())}}" role="button">My profile</a>
+                @endif
                 <ul class="dropdown-content">
                     @if(auth()->user()->isAdvertiser())
                         <li><a href="{{ route('ad.create') }}" role="button">Create advertisement</a></li>
