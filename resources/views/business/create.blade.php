@@ -19,7 +19,7 @@
                 </div>
                 <div class="column">
                     <label for="featuredAd">Featured Ad</label>
-                    <select id="featuredAd" name="featuredAd" required>
+                    <select id="featuredAd" name="featuredAd">
                         <option value="">Select an Ad</option>
                         @foreach($ads as $ad)
                             <option value="{{$ad->id}}">{{$ad->title}}</option>
