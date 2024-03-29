@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <link rel="stylesheet" href="{{ asset('css/orders.css')}}">
-    <title>My orders</title>
+    <title>My advertiser orders</title>
 </head>
 <body>
 <x-nav/>
 <main class="container">
     <section>
-        <h1>My orders</h1>
+        <h1>My advertiser orders</h1>
 
         <div class="orders-container">
             @forelse($orders as $order)
@@ -32,7 +32,7 @@
                     @endif
                 </div>
             @empty
-                <p>You currently have no orders...</p>
+                <p>You currently have no advertiser orders...</p>
             @endforelse
         </div>
     </section>
