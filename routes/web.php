@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('ad', AdController::class)->except('index', 'show');
     Route::resource('business', BusinessController::class);
     Route::get('/business/{business}/export', [BusinessController::class, 'export'])->name('business.export');
+    Route::get('/business/{business}/upload', [BusinessController::class, 'uploadForm'])->name('business.uploadForm');
+    Route::post('/business/{business}/upload', [BusinessController::class, 'upload'])->name('business.upload');
     Route::post('/ad/{id}/favorite', [AdController::class, 'favorite'])->name('ad.favorite');
     Route::post('/ad/{id}/unfavorite', [AdController::class, 'unfavorite'])->name('ad.unfavorite');
     Route::get('/my-favorites', [AdController::class, 'myFavorites'])->name('ad.myFavorites');

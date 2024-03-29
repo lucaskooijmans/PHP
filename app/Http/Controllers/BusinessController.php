@@ -108,4 +108,26 @@ class BusinessController extends Controller
         // Output the generated PDF (inline or attachment)
         return $dompdf->stream($business->user->name . '_business.pdf');
     }
+
+    // Inside your controller
+    public function uploadForm(Business $business)
+    {
+        return view('business.upload', compact('business'));
+    }
+
+    public function upload(Request $request, Business $business)
+    {
+        $request->validate([
+            'pdf_file' => 'required|mimes:pdf|max:2048', // Adjust the max file size as needed
+        ]);
+
+        // Store the uploaded PDF file
+        $path = $request->file('pdf_file')->store('pdfs', 'public');
+
+        // Associate the file with the business
+        $business->pdf_path = $path;
+        $business->save();
+
+        return redirect()->back()->with('success', 'PDF file uploaded successfully.');
+    }
 }

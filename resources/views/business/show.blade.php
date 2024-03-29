@@ -28,6 +28,12 @@
 
         @if(Auth::check() && auth()->user()->isOwner())
             <a href="{{ route('business.export', $business) }}" role="button">Export to PDF</a>
+
+            <form action="{{ route('business.upload', $business) }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="pdf_file">
+                <button type="submit">Upload</button>
+            </form>
         @endif
 
     </section>
