@@ -27,4 +27,10 @@ class AdvertiserController
         $ads = User::findOrFail($id)->ads;
         return view('advertiser.show', compact('ads'));
     }
+    public function list(string $id)
+    {
+        $user = User::findOrFail($id);
+        $advertisers = $user->favorite_advertisers;
+        return view('advertiser.favorite', compact('advertisers'));
+    }
 }

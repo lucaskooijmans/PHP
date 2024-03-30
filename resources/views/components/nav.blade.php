@@ -25,6 +25,7 @@
                     @endif
                     @if(!auth()->user()->isAdvertiser())
                         <li><a href="{{ route('ad.myFavorites') }}" role="button">My favorites</a></li>
+                            <li><a href="{{ route('advertiser.list', \Illuminate\Support\Facades\Auth::user()) }}" role="button">Favorite advertisers</a></li>
                         <li><a href="{{ route('order.index') }}" role="button">My orders</a></li>
                     @endif
                 </ul>

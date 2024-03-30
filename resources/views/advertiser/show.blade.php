@@ -12,7 +12,7 @@
     <div class="grid">
         <section>
             <hgroup>
-                <h2>Advertiser's Name Here</h2>
+                <h2>{{$ads->first()->user->name}}</h2>
                 <h3>Our Latest Advertisements</h3>
             </hgroup>
             <p>Welcome to our exclusive page where we showcase our innovative advertisements. Dive into our creative world.</p>
@@ -27,12 +27,12 @@
             </ul>
             <div>
                 @if(auth()->check() && Auth::user()->favorite_advertisers()->where('favorite_advertiser_id', Auth::user()->id)->exists())
-                    <form action="{{ route('advertiser.unfavorite', Auth::user()->id) }}" method="post">
+                    <form action="{{ route('advertiser.unfavorite', $ad->user->id) }}" method="post">
                         @csrf
                         <input type="image" alt="unfavorite" src="/images/star-solid.svg" />
                     </form>
                 @else
-                    <form action="{{ route('advertiser.favorite', Auth::user()->id) }}" method="post">
+                    <form action="{{ route('advertiser.favorite', $ad->user->id) }}" method="post">
                         @csrf
                         <input type="image" alt="favorite" src="/images/star-regular.svg" />
                     </form>

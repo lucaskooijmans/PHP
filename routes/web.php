@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/advertiser/{id}', [AdvertiserController::class, 'show'])->name('advertiser.show');
     Route::post('/advertiser/{id}/favorite', [AdvertiserController::class, 'favorite_advertiser'])->name('advertiser.favorite');
     Route::post('/advertiser/{id}/unfavorite', [AdvertiserController::class, 'unfavorite_advertiser'])->name('advertiser.unfavorite');
+    Route::get('/advertiser/list/{id}', [AdvertiserController::class, 'list'])->name('advertiser.list');
 });
 
 // Everyone can see these pages
