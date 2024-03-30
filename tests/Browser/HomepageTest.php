@@ -39,7 +39,7 @@ class HomepageTest extends DuskTestCase
     public function testReviews()
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::find(1))
+            $browser->loginAs(User::find(6))
                 ->visit('/ad/2')
                 ->waitFor('[id="title"]')
                 ->click('[id="review-button"]')
@@ -50,6 +50,42 @@ class HomepageTest extends DuskTestCase
                 ->click('[id="submit-button"]')
                 ->waitFor('[id="title"]')
                 ->assertSee('title#1');
+        });
+    }
+
+    public function testAdvertiserFavorite()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs(User::find(6))
+                ->visit('/ad/2');
+                $username = $browser->text('[id="username"]');
+                $browser
+                ->waitFor('[id="title"]')
+                ->click('[id="user_link"]')
+                ->waitFor('[id="advertiser_name"]')
+                ->click('[id="favorite_advertiser"]')
+                ->mouseover('[id="dropdown"]')
+                ->click('[id="favorite_advertisers"]')
+                ->waitFor('[id="title_favorite_advertisers"]')
+                ->assertSee($username);
+        });
+    }
+    public function testAdvertiserUnFavorite()
+    {
+        $this->testAdvertiserFavorite();
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs(User::find(6))
+                ->visit('/ad/2');
+            $username = $browser->text('[id="username"]');
+            $browser
+                ->waitFor('[id="title"]')
+                ->click('[id="user_link"]')
+                ->waitFor('[id="unfavorite_advertiser"]')
+                ->click('[id="unfavorite_advertiser"]')
+                ->mouseover('[id="dropdown"]')
+                ->click('[id="favorite_advertisers"]')
+                ->waitFor('[id="title_favorite_advertisers"]')
+                ->assertDontSee($username);
         });
     }
 }

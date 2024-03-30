@@ -14,7 +14,7 @@
     <div class="grid">
         <section id="advertisers">
             <hgroup>
-                <h2>Your Favorite Advertisers</h2>
+                <h2 id="title_favorite_advertisers">Your Favorite Advertisers</h2>
                 <h3>A curated list of top-notch advertising partners</h3>
             </hgroup>
             <p>Discover our preferred advertisers renowned for their creative campaigns and exceptional service.</p>

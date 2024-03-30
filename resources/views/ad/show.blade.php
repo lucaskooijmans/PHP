@@ -35,7 +35,7 @@
         <p><strong>Price:</strong> {{$ad->price}}</p>
         <p><strong>Category:</strong> {{$ad->category->name}}</p>
         <p><strong>Type:</strong> {{$ad->adType->name}}</p>
-            <a href="{{route('advertiser.show', $ad->user)}}"><p><strong>User:</strong> {{$ad->user->name}}</p></a>
+            <a id="user_link" href="{{route('advertiser.show', $ad->user)}}"><p id="username">{{$ad->user->name}}</p></a>
         <figure>
             <img src="https://picsum.photos/300/200" alt="Apartment Image" />
         </figure>
