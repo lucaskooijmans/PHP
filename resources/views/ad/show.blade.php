@@ -29,7 +29,7 @@
         @endif
 
         <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(128)->generate('http://php.test/ad/' . $ad->id)) !!} ">
-        <h2>{{$ad->title}}</h2>
+        <h2 id="title">{{$ad->title}}</h2>
         <p><strong>Advertiser:</strong> {{ $ad->user->name }}</p>
         <p><strong>Description:</strong> {{$ad->description}}</p>
         <p><strong>Price:</strong> {{$ad->price}}</p>
@@ -40,7 +40,7 @@
         </figure>
         <ul>
             @if(!$ad->reviews->where('writer_user_id', '===', Auth::id())->count() > 0)
-                <a href="{{route('review.create', $ad->id)}}" role="button">Leave a review</a>
+                <a id="review-button" href="{{route('review.create', $ad->id)}}" role="button">Leave a review</a>
             @endif
                 @foreach($ad->reviews as $review)
                     <li>

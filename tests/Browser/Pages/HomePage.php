@@ -11,7 +11,7 @@ class HomePage extends Page
      */
     public function url(): string
     {
-        return '/';
+        return '/ad';
     }
 
     /**

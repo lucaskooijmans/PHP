@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdvertiserController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
@@ -54,6 +55,8 @@ Route::middleware('auth')->group(function () {
     })->name('token.create');
     Route::get('/my-orders', [OrderController::class, 'index'])->name('order.index');
     Route::get('/my-advertiser-orders', [OrderController::class, 'advertiserOrders'])->name('order.advertiserOrders');
+    Route::get('/advertiser/{id}', [AdvertiserController::class, 'show'])->name('advertiser.show');
+    Route::post('/advertiser/{id}/favorite', [AdvertiserController::class, 'favorite'])->name('advertiser.favorite');
 });
 
 // Everyone can see these pages
