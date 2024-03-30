@@ -88,4 +88,25 @@ class HomepageTest extends DuskTestCase
                 ->assertDontSee($username);
         });
     }
+
+    public function testCreateAdvertisement()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs(User::find(2))
+                ->visit('/')
+                ->mouseover('[id="dropdown"]')
+                ->click('[id="create_advertisement"]')
+                ->waitFor('[id="page_title"]')
+                ->type('[id="title"]', 'testAdvertisement#1')
+                ->type('[id="description"]', 'This is a test advertisement#1')
+                ->type('[id="price"]', '12')
+                ->type('[id="postalcode"]', '1234AB')
+                ->radio('[id="category_selector"]', 'car')
+                ->radio('[id="type_selector"]', 'Buy')
+                ->click('[id="submit_button"]')
+                ->waitForText('testAdvertisement#1')
+                ->assertSee('testAdvertisement#1');
+        });
+    }
+
 }

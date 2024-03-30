@@ -19,7 +19,7 @@
                 @endif
                 <ul class="dropdown-content">
                     @if(auth()->user()->isAdvertiser())
-                        <li><a href="{{ route('ad.create') }}" role="button">Create advertisement</a></li>
+                        <li><a id="create_advertisement" href="{{ route('ad.create') }}" role="button">Create advertisement</a></li>
                         <li><a href="{{ route('ad.my') }}" role="button">My advertisements</a></li>
                         <li><a href="{{ route('order.advertiserOrders') }}" role="button">My advertiser orders</a></li>
                     @endif
