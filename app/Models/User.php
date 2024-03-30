@@ -89,7 +89,12 @@ class User extends Authenticatable
     }
     public function favorite_advertisers()
     {
-
+        return $this->belongsToMany(
+            User::class,
+            'favorite_advertisers',
+            'user_id',
+            'favorite_advertiser_id'
+        )->withTimestamps();
     }
     public function orders()
     {

@@ -22,12 +22,25 @@
                         <h3>{{$ad->title}}</h3>
                         <p>{{$ad->description}}</p>
                     </li>
+                    <a href={{route('ad.show', $ad)}}>Ad Details</a>
                 @endforeach
             </ul>
+            <div>
+                @if(auth()->check() && Auth::user()->favorite_advertisers()->where('favorite_advertiser_id', Auth::user()->id)->exists())
+                    <form action="{{ route('advertiser.unfavorite', Auth::user()->id) }}" method="post">
+                        @csrf
+                        <input type="image" alt="unfavorite" src="/images/star-solid.svg" />
+                    </form>
+                @else
+                    <form action="{{ route('advertiser.favorite', Auth::user()->id) }}" method="post">
+                        @csrf
+                        <input type="image" alt="favorite" src="/images/star-regular.svg" />
+                    </form>
+                @endif
+            </div>
         </section>
     </div>
 </main>
-<a href={{route('ad.show', $ad)}}></a>
 <footer class="container">
     <small>
         <a href="#privacy">Privacy Policy</a> • <a href="#terms">Terms & Conditions</a>
