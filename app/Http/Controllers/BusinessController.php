@@ -8,6 +8,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class BusinessController extends Controller
 {
@@ -128,6 +129,9 @@ class BusinessController extends Controller
         $business->pdf_path = $path;
         $business->save();
 
-        return redirect()->back()->with('success', 'PDF file uploaded successfully.');
+        // Flash success message to session
+        Session::flash('success', 'PDF file uploaded successfully.');
+
+        return redirect()->back();
     }
 }
