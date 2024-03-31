@@ -9,7 +9,7 @@
     </ul>
     <ul>
         <li><a href="{{ route('ad.index') }}" role="button">Home</a></li>
-        <li><a href="{{ route('ad.all') }}" role="button">All advertisements</a></li>
+        <li><a id="all_advertisements" href="{{ route('ad.all') }}" role="button">All advertisements</a></li>
 
         <!-- My Profile dropdown (visible only when user is logged in) -->
         @if(Auth::check())

@@ -41,14 +41,14 @@ class HomepageTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::find(6))
                 ->visit('/ad/2')
-                ->waitFor('[id="title"]')
+                ->waitFor('[id="ad_title"]')
                 ->click('[id="review-button"]')
-                ->waitFor('[id="title"]')
-                ->type('[id="title"]', 'title#1')
+                ->waitFor('[id="page_title"]')
+                ->type('[id="title_input"]', 'title#1')
                 ->type('[id="description"]', 'description#1')
                 ->select('[id="score"]')
                 ->click('[id="submit-button"]')
-                ->waitFor('[id="title"]')
+                ->waitFor('[id="ad_title"]')
                 ->assertSee('title#1');
         });
     }
@@ -60,7 +60,7 @@ class HomepageTest extends DuskTestCase
                 ->visit('/ad/2');
                 $username = $browser->text('[id="username"]');
                 $browser
-                ->waitFor('[id="title"]')
+                ->waitFor('[id="ad_title"]')
                 ->click('[id="user_link"]')
                 ->waitFor('[id="advertiser_name"]')
                 ->click('[id="favorite_advertiser"]')
@@ -78,7 +78,7 @@ class HomepageTest extends DuskTestCase
                 ->visit('/ad/2');
             $username = $browser->text('[id="username"]');
             $browser
-                ->waitFor('[id="title"]')
+                ->waitFor('[id="ad_title"]')
                 ->click('[id="user_link"]')
                 ->waitFor('[id="unfavorite_advertiser"]')
                 ->click('[id="unfavorite_advertiser"]')
@@ -106,6 +106,20 @@ class HomepageTest extends DuskTestCase
                 ->click('[id="submit_button"]')
                 ->waitForText('testAdvertisement#1')
                 ->assertSee('testAdvertisement#1');
+        });
+    }
+
+    public function testAllAdvertisements()
+    {
+        $this->browse(function (Browser $browser){
+            $advertisements = Ad::all();
+            $browser->loginAs(User::find(2))
+                ->click('[id="all_advertisements"]')
+                ->waitFor('[id="all_ads"]');
+            foreach($advertisements as $ad)
+            {
+                $browser->assertSee($ad->title);
+            }
         });
     }
 

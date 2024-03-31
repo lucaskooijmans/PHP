@@ -9,7 +9,7 @@
 <body>
 <x-nav/>
 <main class="container">
-    <h1>Create review</h1>
+    <h1 id="page_title">Create review</h1>
     @if($ad->id === Auth::id())
         <h1>You can't review yourself</h1>
         <a href="{{route('ad.index')}}"class="btn btn-primary">Go Back</a>
@@ -19,7 +19,7 @@
             @csrf
             <input type="hidden" for="ad_id" name="ad_id" value="{{$ad->id}}">
             <label for="title">Title</label>
-            <input type="text" id="title" name="title" required maxlength="20">
+            <input type="text" id="title_input" name="title" required maxlength="20">
             <label for="description">Description</label>
             <textarea id="description" name="description" rows="4" required></textarea>
             <label for="score">Score</label>
