@@ -68,6 +68,7 @@
         @endforelse
     </div>
     <div class="clearfix"></div>
+    {{ $myAds->links() }}
 </main>
 
 <x-footer/>

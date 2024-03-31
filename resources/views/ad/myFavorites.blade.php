@@ -32,6 +32,8 @@
         @endforelse
     </div>
     <div class="clearfix"></div>
+
+    {{ $myFavorites->links() }}
 </main>
 
 <x-footer/>

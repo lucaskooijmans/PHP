@@ -13,6 +13,36 @@
 <main class="container">
     <h1>All advertisements</h1>
 
+    <form action="{{ route('ad.all') }}" method="GET" class="filter-form">
+        <div class="filter-group">
+            <label for="category">Filter by Category:</label>
+            <select name="category" id="category">
+                <option value="">All Categories</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="sortBy">Sort By:</label>
+            <select name="sortBy" id="sortBy">
+                <option value="created_at">Created At</option>
+                <option value="price">Price</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="sortDirection">Sort Direction:</label>
+            <select name="sortDirection" id="sortDirection">
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <button type="submit">Apply Filters</button>
+        </div>
+    </form>
+
     <div class="row">
         @foreach($allAds as $ad)
             <div class="advertisement" onclick="location.href='{{ route('ad.show', $ad->id) }}';">
@@ -26,7 +56,10 @@
             </div>
         @endforeach
     </div>
+
     <div class="clearfix"></div>
+
+    {{ $allAds->links() }}
 </main>
 
 <x-footer/>

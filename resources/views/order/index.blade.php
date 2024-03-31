@@ -35,6 +35,9 @@
                 <p>You currently have no orders...</p>
             @endforelse
         </div>
+
+        {{ $orders->links() }}
+
     </section>
 </main>
 <x-footer/>

@@ -35,6 +35,7 @@
                 <p>You currently have no advertiser orders...</p>
             @endforelse
         </div>
+        {{ $orders->links() }}
     </section>
 </main>
 <x-footer/>
