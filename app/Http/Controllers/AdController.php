@@ -8,8 +8,6 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-
 
 class AdController extends Controller
 {
@@ -123,10 +121,29 @@ class AdController extends Controller
         return view('ad.myFavorites', compact('myFavorites'));
     }
 
-    public function all(){
-        $allAds = Ad::all()->where('is_expired', false);
-        return view('ad.all', compact('allAds'));
+    public function all(Request $request)
+    {
+        $categories = Category::all(); // Fetch all categories
+
+        $query = Ad::query()->where('is_expired', false);
+
+        // Filtering by category if a specific category is selected
+        if ($request->has('category') && $request->category != '') {
+            $query->where('category_id', $request->category);
+        }
+
+        // Sorting
+        $sortBy = $request->input('sortBy', 'created_at');
+        $sortDirection = $request->input('sortDirection', 'desc');
+        $query->orderBy($sortBy, $sortDirection);
+
+        // Paginate the results
+        $perPage = 2; // Number of ads per page
+        $allAds = $query->paginate($perPage);
+
+        return view('ad.all', compact('allAds', 'categories')); // Pass paginated ads and categories to the view
     }
+
 
     public function myAdvertisements()
     {

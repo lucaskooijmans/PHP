@@ -19,7 +19,7 @@ class AdSeeder extends Seeder
             'price' => 10,
             'postalcode' => '1234AB',
             'user_id' => 3,
-            'category_id' => 1,
+            'category_id' => 4,
             'type_id' => 2,
             'business_id' => 1,
         ]);
