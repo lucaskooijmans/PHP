@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Business;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AccountController
+class AccountController extends Controller
 {
     public function index($id)
     {
         $user = User::findOrFail($id);
-        return view('account.index', compact('user'));
+        $business = $user->business()->first();
+        return view('account.index', compact('user', 'business'));
     }
 }

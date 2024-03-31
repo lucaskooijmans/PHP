@@ -18,7 +18,8 @@ class BusinessSeeder extends Seeder
             'slug' => 'MyBusiness1',
             'name' => 'MyBusiness1',
             'description' => 'We rent chickens because we can.',
-            'user_id' => 1,
+            'user_id' => 3,
+            'featured_ad' => 1
         ]);
     }
 }
