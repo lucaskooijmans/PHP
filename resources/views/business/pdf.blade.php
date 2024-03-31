@@ -8,6 +8,7 @@
 <main class="container">
     <section>
         <h1>----- CONTRACT -----</h1>
+        <h2>{{$business->name}}</h2>
         <h2>{{$business->user->name}}'s business</h2>
         <p>{{$business->description}}</p>
 {{--        <img src="https://source.unsplash.com/random/400x300?company" alt="Business Picture" />--}}

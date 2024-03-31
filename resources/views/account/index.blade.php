@@ -22,7 +22,7 @@
             <p><strong>Email:</strong> {{$user->email}}</p>
 
             @if(Auth::check() && auth()->user()->isBusiness())
-                <a href="{{route('business.show', $business)}}">Go to my business page</a>
+                <a href="{{route('business.show', $business->slug)}}">Go to my business page</a>
             @endif
 
         </section>

@@ -100,11 +100,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
-    public function business()
-    {
-        return $this->hasOne(Business::class);
-    }
-
     public function business(){
         return $this->belongsTo(Business::class, 'business_id');
     }

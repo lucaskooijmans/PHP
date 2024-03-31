@@ -33,7 +33,7 @@
         <p><strong>Advertiser:</strong> {{ $ad->user->name }}
             <br>
             @if(Auth::check() && $ad->user->isBusiness())
-                <a href="{{route('business.show', $business)}}" role="button">Go to my business page!</a>
+                <a href="{{route('business.show', $business->slug)}}" role="button">Go to my business page!</a>
             @endif
         </p>
         <p><strong>Description:</strong> {{$ad->description}}</p>

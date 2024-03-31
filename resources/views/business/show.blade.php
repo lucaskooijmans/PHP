@@ -10,7 +10,8 @@
 <x-nav/>
 <main class="container">
     <section>
-        <h2>Welcome to {{$business->user->name}}'s business page: {{$business->name}}</h2>
+        <h1>{{$business->name}}</h1>
+        <h2>Welcome to {{$business->user->name}}'s business page</h2>
         <p>{{$business->description}}</p>
         <img src="https://source.unsplash.com/random/400x300?company" alt="Business Picture" />
         <h3>Featured advertisement</h3>
@@ -33,7 +34,7 @@
         @endif
 
         @if(Auth::check() && auth()->user()->isOwner())
-            <a href="{{ route('business.export', $business) }}" role="button">Export to PDF</a>
+            <a href="{{ route('business.export', $business->slug) }}" role="button">Export to PDF</a>
             <br>
             <br>
             @if(Session::has('success'))
@@ -42,7 +43,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('business.upload', $business) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('business.upload', $business->slug) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="file" name="pdf_file">
                 <button type="submit">Upload</button>

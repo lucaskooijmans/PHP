@@ -85,8 +85,9 @@ class BusinessController extends Controller
         //
     }
 
-    public function export(Business $business)
+    public function export(string $slug)
     {
+        $business = Business::where('slug', $slug)->firstOrFail();
         // Load the HTML content
         $html = view('business.pdf', compact('business'))->render();
 
@@ -108,17 +109,20 @@ class BusinessController extends Controller
         $dompdf->render();
 
         // Output the generated PDF (inline or attachment)
-        return $dompdf->stream($business->user->name . '_business.pdf');
+        return $dompdf->stream($business->name . '_business.pdf');
     }
 
     // Inside your controller
-    public function uploadForm(Business $business)
+    public function uploadForm(string $slug)
     {
+        $business = Business::where('slug', $slug)->firstOrFail();
         return view('business.upload', compact('business'));
     }
 
-    public function upload(Request $request, Business $business)
+    public function upload(Request $request, string $slug)
     {
+        $business = Business::where('slug', $slug)->firstOrFail();
+
         $request->validate([
             'pdf_file' => 'required|mimes:pdf|max:2048', // Adjust the max file size as needed
         ]);
