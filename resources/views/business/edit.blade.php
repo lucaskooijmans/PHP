@@ -19,6 +19,10 @@
                     <textarea id="description" name="description" rows="4" required>{{$business->description}}</textarea>
                 </div>
                 <div class="column">
+                    <label for="slug">Slug</label>
+                    <textarea id="slug" name="slug" rows="4" required>{{$business->slug}}</textarea>
+                </div>
+                <div class="column">
                     <label for="featuredAd">Featured Ad</label>
                     <select id="featuredAd" name="featuredAd" required>
                         <option value="">Select an Ad</option>

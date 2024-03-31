@@ -14,12 +14,20 @@
             @csrf
             <div class="grid">
                 <div class="column">
+                    <label for="name">Name</label>
+                    <textarea id="name" name="name" rows="4" required></textarea>
+                </div>
+                <div class="column">
+                    <label for="slug">Slug</label>
+                    <textarea id="slug" name="slug" rows="4" required></textarea>
+                </div>
+                <div class="column">
                     <label for="description">Description</label>
                     <textarea id="description" name="description" rows="4" required></textarea>
                 </div>
                 <div class="column">
                     <label for="featuredAd">Featured Ad</label>
-                    <select id="featuredAd" name="featuredAd" required>
+                    <select id="featuredAd" name="featuredAd">
                         <option value="">Select an Ad</option>
                         @foreach($ads as $ad)
                             <option value="{{$ad->id}}">{{$ad->title}}</option>

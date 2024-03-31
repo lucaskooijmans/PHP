@@ -36,7 +36,7 @@
                 <option value="9">9</option>
                 <option value="10">10</option>
             </select>
-            <button type="submit">Submit Review</button>
+            <button id="submit-button" type="submit">Submit Review</button>
         </form>
     </section>
     @endif

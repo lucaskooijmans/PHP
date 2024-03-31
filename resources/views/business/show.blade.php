@@ -10,15 +10,19 @@
 <x-nav/>
 <main class="container">
     <section>
-        <h2>{{$user->name}}</h2>
+        <h2>{{$business->name}}</h2>
         <p>{{$business->description}}</p>
         <h3>Featured Ad</h3>
-        <p>{{$business->featuredAd->title}}</p>
-        <img src="https://source.unsplash.com/random/300x200?business" alt="Featured Ad" />
-        <p>Price: {{$business->featuredAd->price}}</p>
+        @if($business->featuredAd)
+            <p>{{$business->featuredAd->title}}</p>
+            <img src="https://source.unsplash.com/random/300x200?business" alt="Featured Ad" />
+            <p>Price: {{$business->featuredAd->price}}</p>
+        @else
+            <p>A featured ad has not been selected, yet.</p>
+        @endif
         <img src="https://source.unsplash.com/random/400x300?company" alt="Business Picture" />
         <br>
-        @if($business->featuredAd->user->id == Auth::id())
+        @if($business->user->id == Auth::id())
             <a href="{{route('business.edit', $business)}}" role="button">Edit</a>
         @endif
     </section>
