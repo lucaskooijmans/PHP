@@ -117,7 +117,7 @@ class AdController extends Controller
 
     public function myFavorites()
     {
-        $myFavorites = auth()->user()->favorites()->get();
+        $myFavorites = auth()->user()->favorites()->paginate(3); // Paginate favorites
         return view('ad.myFavorites', compact('myFavorites'));
     }
 
@@ -138,7 +138,7 @@ class AdController extends Controller
         $query->orderBy($sortBy, $sortDirection);
 
         // Paginate the results
-        $perPage = 2; // Number of ads per page
+        $perPage = 3; // Number of ads per page
         $allAds = $query->paginate($perPage);
 
         return view('ad.all', compact('allAds', 'categories')); // Pass paginated ads and categories to the view
@@ -148,7 +148,7 @@ class AdController extends Controller
     public function myAdvertisements()
     {
         $user = Auth::user();
-        $myAds = $user->ads()->get();
+        $myAds = $user->ads()->paginate(3);
         return view('ad.my', compact('myAds'));
     }
 

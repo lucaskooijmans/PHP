@@ -15,7 +15,8 @@ class OrderController extends Controller
      */
     public function index() // User (not advertiser) -> My Orders
     {
-        $orders = Order::all()->where('user_id', '===', Auth::id());
+        $orders = Order::where('user_id', Auth::id())->paginate(3); // Paginate orders
+
         return view('order.index', compact('orders'));
     }
 
@@ -89,7 +90,7 @@ class OrderController extends Controller
         $advertiserId = auth()->id();
         $orders = Order::whereHas('ad', function ($query) use ($advertiserId) {
             $query->where('user_id', $advertiserId);
-        })->get();
+        })->paginate(3); // Paginate orders
 
         return view('order.advertiser_orders', compact('orders'));
     }

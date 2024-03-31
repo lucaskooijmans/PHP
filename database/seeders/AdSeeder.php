@@ -41,5 +41,32 @@ class AdSeeder extends Seeder
             'category_id' => 4,
             'type_id' => 1,
         ]);
+        Ad::create([
+            'title' => 'Pig for sale',
+            'description' => 'Cool pig for sale, tastes good you know',
+            'price' => 15,
+            'postalcode' => '1236AB',
+            'user_id' => 2,
+            'category_id' => 4,
+            'type_id' => 1,
+        ]);
+        Ad::create([
+            'title' => 'Chainsaw',
+            'description' => 'It works and dont need it anymore',
+            'price' => 115,
+            'postalcode' => '1236AB',
+            'user_id' => 2,
+            'category_id' => 2,
+            'type_id' => 1,
+        ]);
+        Ad::create([
+            'title' => 'Ford F150',
+            'description' => 'America. Rent price per day..',
+            'price' => 5000,
+            'postalcode' => '1236AB',
+            'user_id' => 3,
+            'category_id' => 4,
+            'type_id' => 2,
+        ]);
     }
 }
