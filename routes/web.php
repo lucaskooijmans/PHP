@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdvertiserController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
@@ -35,10 +36,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('ad', AdController::class)->except('index', 'show');
-    Route::resource('business', BusinessController::class);
-    Route::get('/business/{business}/export', [BusinessController::class, 'export'])->name('business.export');
-    Route::get('/business/{business}/upload', [BusinessController::class, 'uploadForm'])->name('business.uploadForm');
-    Route::post('/business/{business}/upload', [BusinessController::class, 'upload'])->name('business.upload');
+    Route::resource('business', BusinessController::class)->except('show');
+    Route::get('/business/{slug}', [BusinessController::class, 'show'])->name('business.show');
+    Route::get('/business/{slug}/export', [BusinessController::class, 'export'])->name('business.export');
+    Route::get('/business/{slug}/upload', [BusinessController::class, 'uploadForm'])->name('business.uploadForm');
+    Route::post('/business/{slug}/upload', [BusinessController::class, 'upload'])->name('business.upload');
     Route::post('/ad/{id}/favorite', [AdController::class, 'favorite'])->name('ad.favorite');
     Route::post('/ad/{id}/unfavorite', [AdController::class, 'unfavorite'])->name('ad.unfavorite');
     Route::get('/my-favorites', [AdController::class, 'myFavorites'])->name('ad.myFavorites');
@@ -56,6 +58,10 @@ Route::middleware('auth')->group(function () {
     })->name('token.create');
     Route::get('/my-orders', [OrderController::class, 'index'])->name('order.index');
     Route::get('/my-advertiser-orders', [OrderController::class, 'advertiserOrders'])->name('order.advertiserOrders');
+    Route::get('/advertiser/{id}', [AdvertiserController::class, 'show'])->name('advertiser.show');
+    Route::post('/advertiser/{id}/favorite', [AdvertiserController::class, 'favorite_advertiser'])->name('advertiser.favorite');
+    Route::post('/advertiser/{id}/unfavorite', [AdvertiserController::class, 'unfavorite_advertiser'])->name('advertiser.unfavorite');
+    Route::get('/advertiser/list/{id}', [AdvertiserController::class, 'list'])->name('advertiser.list');
 });
 
 // Everyone can see these pages

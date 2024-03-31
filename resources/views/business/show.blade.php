@@ -10,7 +10,7 @@
 <x-nav/>
 <main class="container">
     <section>
-        <h2>Welcome to {{$business->user->name}}'s business page</h2>
+        <h2>Welcome to {{$business->user->name}}'s business page: {{$business->name}}</h2>
         <p>{{$business->description}}</p>
         <img src="https://source.unsplash.com/random/400x300?company" alt="Business Picture" />
         <h3>Featured advertisement</h3>

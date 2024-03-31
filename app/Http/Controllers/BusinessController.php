@@ -36,6 +36,8 @@ class BusinessController extends Controller
     public function store(Request $request)
     {
         $business = Business::create([
+            'name' => $request->name,
+            'slug' => $request->slug,
             'description' => $request->description,
             'featured_ad' => $request->featured_ad,
             'user_id' => Auth::id(),
@@ -46,11 +48,10 @@ class BusinessController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        $user = User::findOrFail(Auth::id());
-        $business = Business::findOrFail($id);
-        return view('business.show', compact('business', 'user'));
+        $business = Business::where('slug', $slug)->firstOrFail();
+        return view('business.show', compact('business'));
     }
 
     /**

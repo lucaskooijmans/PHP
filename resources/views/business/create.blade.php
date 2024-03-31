@@ -14,6 +14,14 @@
             @csrf
             <div class="grid">
                 <div class="column">
+                    <label for="name">Name</label>
+                    <textarea id="name" name="name" rows="4" required></textarea>
+                </div>
+                <div class="column">
+                    <label for="slug">Slug</label>
+                    <textarea id="slug" name="slug" rows="4" required></textarea>
+                </div>
+                <div class="column">
                     <label for="description">Description</label>
                     <textarea id="description" name="description" rows="4" required></textarea>
                 </div>

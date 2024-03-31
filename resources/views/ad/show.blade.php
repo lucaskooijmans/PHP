@@ -40,12 +40,13 @@
         <p><strong>Price:</strong> {{$ad->price}}</p>
         <p><strong>Category:</strong> {{$ad->category->name}}</p>
         <p><strong>Type:</strong> {{$ad->adType->name}}</p>
+            <a id="user_link" href="{{route('advertiser.show', $ad->user)}}"><p id="username">{{$ad->user->name}}</p></a>
         <figure>
             <img src="https://picsum.photos/300/200" alt="Apartment Image" />
         </figure>
         <ul>
             @if(!$ad->reviews->where('writer_user_id', '===', Auth::id())->count() > 0)
-                <a href="{{route('review.create', $ad->id)}}" role="button">Leave a review</a>
+                <a id="review-button" href="{{route('review.create', $ad->id)}}" role="button">Leave a review</a>
             @endif
                 @foreach($ad->reviews as $review)
                     <li>
