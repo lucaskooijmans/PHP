@@ -29,8 +29,13 @@
         @endif
 
         <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(128)->generate('http://php.test/ad/' . $ad->id)) !!} ">
-        <h2 id="title">{{$ad->title}}</h2>
-        <p><strong>Advertiser:</strong> {{ $ad->user->name }}</p>
+        <h2>{{$ad->title}}</h2>
+        <p><strong>Advertiser:</strong> {{ $ad->user->name }}
+            <br>
+            @if(Auth::check() && $ad->user->isBusiness())
+                <a href="{{route('business.show', $business->slug)}}" role="button">Go to my business page!</a>
+            @endif
+        </p>
         <p><strong>Description:</strong> {{$ad->description}}</p>
         <p><strong>Price:</strong> {{$ad->price}}</p>
         <p><strong>Category:</strong> {{$ad->category->name}}</p>

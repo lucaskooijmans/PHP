@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description');
             $table->string('image_path')->nullable();
+            $table->string('pdf_path')->nullable();
             $table->foreignId('featured_ad')->nullable();
             $table->foreignId('user_id');
             $table->timestamps();

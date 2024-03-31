@@ -12,18 +12,19 @@
     <div class="grid">
         <section>
             <hgroup>
-                <h2>Welcome to Your Account</h2>
+                <h2>Welcome to your profile</h2>
                 <h3>Your Details</h3>
             </hgroup>
-            <p>Here you can view and manage your account details.</p>
             <figure>
-                <img src="https://unsplash.it/400/300" alt="Account Details Image" />
-                <figcaption><a href="https://unsplash.it" target="_blank">Image Source</a></figcaption>
+                <img src="https://placebeard.it/320/240" alt="Account Details Image">
             </figure>
-            <h3>Name</h3>
-            <p>{{$user->name}}</p>
-            <h3>Email</h3>
-            <p>{{$user->email}}</p>
+            <p><strong>Name:</strong> {{$user->name}}</p>
+            <p><strong>Email:</strong> {{$user->email}}</p>
+
+            @if(Auth::check() && auth()->user()->isBusiness())
+                <a href="{{route('business.show', $business->slug)}}">Go to my business page</a>
+            @endif
+
         </section>
         @if($user->tokens->count() > 0)
             <label for="api_key">API Key</label>
