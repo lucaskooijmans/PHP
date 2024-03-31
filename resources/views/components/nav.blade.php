@@ -31,8 +31,7 @@
                 </ul>
             </li>
         @endif
-
-        <li><a href="#" role="button">Contact</a></li>
+        
         @if(!Auth::check())
             <li><a href="{{ route('login') }}">LOGIN</a></li>
             <li><a href="{{ route('register') }}">REGISTER</a></li>
