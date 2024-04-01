@@ -29,7 +29,7 @@
         @endif
 
         <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(128)->generate('http://php.test/ad/' . $ad->id)) !!} ">
-        <h2>{{$ad->title}}</h2>
+        <h2 id="ad_title">{{$ad->title}}</h2>
         <p><strong>Advertiser:</strong> {{ $ad->user->name }}
             <br>
             @if(Auth::check() && $ad->user->isBusiness())

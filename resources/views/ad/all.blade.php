@@ -11,7 +11,7 @@
 <x-nav/>
 
 <main class="container">
-    <h1>All advertisements</h1>
+    <h1 id="all_ads">All advertisements</h1>
 
     <form action="{{ route('ad.all') }}" method="GET" class="filter-form">
         <div class="filter-group">
