@@ -19,7 +19,7 @@
         @forelse($myFavorites as $myFavs)
             <div class="advertisement" onclick="location.href='{{ route('ad.show', $myFavs->id) }}';">
                 <h3>{{ $myFavs->title }}</h3>
-                <img src="https://picsum.photos/300/200" alt="Advertisement Image"/>
+                <img src="https://source.unsplash.com/random/300x200?product" alt="Advertisement Image"/>
                 <p><strong>Advertiser:</strong> {{ $myFavs->user->name }}</p>
                 <p><strong>Description:</strong> {{ $myFavs->description }}</p>
                 <p><strong>Price:</strong> {{ $myFavs->price }}</p>

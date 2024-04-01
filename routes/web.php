@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdvertiserController;
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
@@ -68,6 +69,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/ad', [AdController::class, 'index'])->name('ad.index');
 Route::get('/ad/{id}', [AdController::class, 'show'])->name('ad.show');
 Route::get('/all-ads', [AdController::class, 'all'])->name('ad.all');
+Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
 
 
 

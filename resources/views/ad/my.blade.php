@@ -56,7 +56,7 @@
         @forelse($myAds as $ad)
             <div class="advertisement" onclick="location.href='{{ route('ad.show', $ad->id) }}';">
                 <h3>{{ $ad->title }}</h3>
-                <img src="https://picsum.photos/300/200" alt="Advertisement Image"/>
+                <img src="https://source.unsplash.com/random/300x200?product" alt="Advertisement Image"/>
                 <p><strong>Description:</strong> {{ $ad->description }}</p>
                 <p><strong>Price:</strong> {{ $ad->price }}</p>
                 <p><strong>Category:</strong> {{ $ad->category->name }}</p>
